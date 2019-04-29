@@ -1,0 +1,118 @@
+<template>
+<div  >
+  <header id="header" class="light">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 push-md-2 text-center">
+                    <!-- Navigation -->
+                    <nav class="module module-navigation mr-4">
+                        <ul id="nav-main" class="nav nav-main">
+                            
+             <li class="nav-item">
+              <router-link to="/home" class="has-dropdown">Anasayfa</router-link>
+            </li>
+             <li class="nav-item">
+              <router-link to="/about" class="has-dropdown">Hakkımızda</router-link>
+            </li>
+                           
+                            <li class="nav-item">
+              <router-link to="/product" class="has-dropdown">Menü</router-link>
+            </li>
+                            <li><a href="page-offers.html">İndİrİmler</a></li>
+                           
+                         
+                            
+                            <li class="nav-item">
+              <router-link to="/contact" class="has-dropdown">İletİşİm</router-link>
+            </li>
+                                       <li class="nav-item">
+              <router-link to="/booking" class="has-dropdown">Rezervasyon</router-link>
+            </li> 
+                            
+                           
+                        </ul>
+                    </nav>
+                    <div class="module">
+                       
+                        <router-link to="/product" class="btn btn-outline-primaryn"><span>Sİparİş Ver</span></router-link>
+                    </div>
+                
+                </div>
+                <div class="col-md-2 push-md-2" >
+                 
+                        <a @click="showPanel()" href="#" class="module module-cart right" data-toggle="panel-cart">
+                        <span class="cart-icon">
+                            <i class="ti ti-shopping-cart"></i>
+                            <span class="notification">2</span>
+                        </span>
+                        <span class="cart-value">32.98 ₺</span>
+                    </a>
+                
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!-- Header / End -->
+
+    <!-- Header -->
+    <header id="header-mobile" class="dark">
+
+        <div class="module module-nav-toggle">
+            <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
+        </div>    
+
+        <div class="module module-logo">
+            <a href="index.html">
+                <img src="assets/img/logo-horizontal-light.svg" alt="">
+            </a>
+        </div>
+    
+        <a @click="showPanel()" href="#" class="module module-cart" data-toggle="panel-cart">
+            <i class="ti ti-shopping-cart"></i>
+            <span class="notification">2</span>
+        </a>
+
+    </header>
+    <!-- Header / End -->
+        
+
+  <!-- Content -->
+    <div id="content">
+
+      
+
+       <div id="body-overlay"></div>
+
+    </div>
+   
+
+</div>
+</template>
+<script>
+
+import {EventBus} from './../main.js'
+
+export default {
+   
+   data(){
+       return{
+           menuShow :false
+       }
+   },
+   methods :{
+       showPanel(){
+           
+           this.menuShow = !this.menuShow;
+           EventBus.$emit('showPanel',this.menuShow)
+       }
+   }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style >
+
+
+</style>
