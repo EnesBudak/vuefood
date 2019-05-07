@@ -3,7 +3,8 @@
    
       <Header />
       <Sepetim />
-    <router-view></router-view>
+      
+    <router-view ></router-view>
      
       <Footer />
       
@@ -23,6 +24,7 @@ export default {
     Header:Header,
     Footer:Footer,
     Sepetim:Sepetim,
+    
   
     
     

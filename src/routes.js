@@ -4,7 +4,7 @@ import About from './Views/About.vue'
 import Contact from './Views/Contact.vue'
 import Booking from './Views/Booking.vue'
 import Checkout from './Views/Checkout.vue'
-
+import Login from './Views/Login.vue'
 
 
 export const routes =[
@@ -32,9 +32,14 @@ export const routes =[
     component:Booking
     
     }, 
-     {path:'/checkout',
+    {path:'/checkout',
     name:'checkout',
     component:Checkout
+    
+    },
+    {path:'/login',
+    name:'login',
+    component:Login
     
     },
    

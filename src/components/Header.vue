@@ -1,10 +1,10 @@
 <template>
-<div  >
+<div >
   <header id="header" class="light">
 
         <div class="container">
             <div class="row">
-                <div class="col-md-8 push-md-2 text-center">
+                <div class="col-md-8  push-md-2 text-center">
                     <!-- Navigation -->
                     <nav class="module module-navigation mr-4">
                         <ul id="nav-main" class="nav nav-main">
@@ -37,8 +37,20 @@
                        
                         <router-link to="/product" class="btn btn-outline-primaryn"><span>Sİparİş Ver</span></router-link>
                     </div>
+                   
                 
-                </div>
+                    <div class="module">
+                        <a  href="#" >
+                            <span >          
+                        <i class="ti ti-user"></i>
+                       {{changeName()}} Selam,{{firstname}}
+                            </span>                                
+                       </a>
+                    </div>
+                                
+                                </div>
+      
+
                 <div class="col-md-2 push-md-2" >
                  
                         <a @click="showPanel()" href="#" class="module module-cart right" data-toggle="panel-cart">
@@ -48,8 +60,21 @@
                         </span>
                         <span class="cart-value">32.98 ₺</span>
                     </a>
-                
+
+    
                 </div>
+             
+
+            
+               
+                
+                
+                
+                
+
+               
+
+                
             </div>
         </div>
 
@@ -91,14 +116,15 @@
 </div>
 </template>
 <script>
-
+import axios from 'axios'
 import {EventBus} from './../main.js'
 
 export default {
    
    data(){
        return{
-           menuShow :false
+           menuShow :false,
+           firstname:''
        }
    },
    methods :{
@@ -106,7 +132,14 @@ export default {
            
            this.menuShow = !this.menuShow;
            EventBus.$emit('showPanel',this.menuShow)
+       },
+       changeName(){
+           EventBus.$on('name',(data) => {
+            this.firstname=data;
+           })
+           
        }
+
    }
 }
 </script>

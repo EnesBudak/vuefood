@@ -4,7 +4,7 @@
         <section class="section section-main section-main-2 bg-dark dark">
 
             <!-- Video BG -->
-            <div class="bg-video" data-property="{videoURL:'https://youtu.be/_M-nsAt_qS8', showControls: false, containment:'self',startAt:48,stopAt:68,mute:true,autoPlay:true,loop:true,opacity:0.3,quality:'hd1080'}"></div>
+            <div class="bg-video" data-property="{videoURL:'', showControls: false, containment:'self',startAt:48,stopAt:68,mute:true,autoPlay:true,loop:true,opacity:0.3,quality:'hd1080'}"></div>
             <div class="bg-image bg-video-placeholder zooming"><img src="assets/img/photos/bg-restaurant.jpg" alt=""></div>
 
             <div class="container v-center text-center">
@@ -17,3 +17,8 @@
         </section>
     </div>
 </template>
+<script>
+export default {
+    //https://youtu.be/_M-nsAt_qS8
+}
+</script>
