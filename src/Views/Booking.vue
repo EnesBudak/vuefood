@@ -20,43 +20,39 @@
                                     <p class="lead text-muted mb-0">Rezervasyon ile ilgili detaylar.</p>
                                 </div>
                             </div>
-                            <form action="#" id="booking-form" data-validate>
+                            <div action="#" >
                                 <div class="utility-box-content">
                                     <div class="form-group">
                                         <label>Ad ve soyad</label>
-                                        <input type="text" name="name" class="form-control" required>
+                                        <input type="text" name="name" class="form-control" v-model="booking.name" required>
                                     </div>
                                     <div class="form-group">
                                         <label>E-mail</label>
-                                        <input type="email" name="email" class="form-control" required>
+                                        <input type="email" name="email" class="form-control" v-model="booking.email" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Telefon</label>
-                                        <input type="text" name="phone" class="form-control" required>
+                                        <input type="text" name="phone" class="form-control" v-model="booking.phone" required>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Tarih</label>
-                                                <input type="date" name="date" class="form-control" required>
+                                                <input type="date" name="date" class="form-control" v-model="booking.date" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Kişi  Sayısı</label>
-                                                <input type="number" name="attendents" min="1" class="form-control" required>
+                                                <input type="number" name="attendents" min="1" class="form-control" v-model="booking.attendents" required>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button class="utility-box-btn btn btn-secondary btn-block btn-lg btn-submit" type="submit">
+                                <button class="utility-box-btn btn btn-secondary btn-block btn-lg btn-submit" @click="send_rez" >
                                     <span class="description">Rezervasyon Yap!</span>
-                                    <span class="success">
-                                        <svg x="0px" y="0px" viewBox="0 0 32 32"><path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/></svg>
-                                    </span>
-                                    <span class="error">Try again...</span>
                                 </button>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,3 +61,50 @@
         </section>
     </div>
 </template>
+
+<script>
+import axios from 'axios'
+
+export default{
+
+data(){
+
+    return{
+        booking:{
+        name:'',
+        phone:'',
+        date:'',
+        attendents:'',
+        email:''
+        }
+    }
+},
+
+    methods:{
+        send_rez(){
+    axios({
+        method: 'post',
+        url: 'http://172.20.10.12:81/rezervasyon',
+        data: {
+            name: this.booking.name,
+            phone : this.booking.phone,
+            date : this.booking.date,
+            attendents : this.booking.attendents,
+            email : this.booking.email
+        }
+    }).then(obj => {
+        if(obj.data == "ok"){
+       alert("Biz sizi arayacağız.");
+       this.booking={}
+        }
+    })
+
+        }
+
+
+    }
+}
+
+
+
+</script>

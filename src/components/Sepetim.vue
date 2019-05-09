@@ -8,41 +8,20 @@
                 <h5 class="title">Sepetim</h5>
                 <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
             </div>
-            <div class="panel-cart-content">
-                <table class="table-cart">
+            <div class="panel-cart-content" >
+                <table class="table-cart" >
                     <tr>
                         <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal">Pizza Chicked BBQ</a></span>
-                            <span class="caption text-muted">26”, deep-pan, thin-crust</span>
+                            <span class="name"><a href="#productModal" data-toggle="modal"></a></span>
+                            <span class="caption text-muted"></span>
                         </td>
-                        <td class="price">₺9.82</td>
+                        <td class="price"></td>
                         <td class="actions">
                             <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
                             <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal">Beef Burger</a></span>
-                            <span class="caption text-muted">Large (500g)</span>
-                        </td>
-                        <td class="price">₺9.82</td>
-                        <td class="actions">
-                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal">Extra Burger</a></span>
-                            <span class="caption text-muted">Small (200g)</span>
-                        </td>
-                        <td class="price text-success">₺0.00</td>
-                        <td class="actions">
-                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                        </td>
-                    </tr>
+                   
                     <tr>
                         <td class="title">
                             <span class="name">Weekend 20% OFF</span>
@@ -228,6 +207,8 @@
 <script>
 
 import {EventBus} from './../main.js'
+import { mapState,mapGetters } from 'vuex'
+
 
 export default {
     components:{
@@ -236,9 +217,18 @@ export default {
     data(){
         return{
           menuShow:false,
+          
         }
     },
+    computed:{
+       ...mapGetters('cart',{
+           products:'cartProducts'
+       }) 
+      
+    },
     methods:{
+        
+        
         
 
     },
@@ -246,7 +236,13 @@ export default {
         EventBus.$on('showPanel',(data) =>{
             
             this.menuShow = data;
-        })
-    }
+        });
+
+        
+       
+    },
+     
+        
+   
 }
 </script>

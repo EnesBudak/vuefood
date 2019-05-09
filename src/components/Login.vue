@@ -72,12 +72,15 @@ export default {
         this.errors.push("Yanlış email girdiniz.");        
       }
       else if(this.validEmail(this.userData.username)){
-        const url ="http://172.20.10.12:8080/user/login"
+        const url ="http://172.20.10.12:81/user/login"
        
        axios.post(url,this.userData)
       .then(response => {
         this.firstname = response.data.firstname;
         this.lastname = response.data.lastname;
+
+        console.log(response);
+        
 
         EventBus.$emit('name',this.firstname);
 
