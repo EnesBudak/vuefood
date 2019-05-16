@@ -45,6 +45,70 @@
                 </div>
             </div>
         </div>
+        <div id="panel-cart"    >
+        
+        <div class="panel-cart-container">
+            <div class="panel-cart-title">
+                <h5 class="title">Sepetim</h5>
+                <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
+            </div>
+            <div class="panel-cart-content" >
+                <table class="table-cart" >
+                    <tr v-for="item in items" >
+                        <td class="title"  >
+                            <span class="name"><a href="#productModal" data-toggle="modal">{{items.name}}</a></span>
+                            <span class="caption text-muted">{{items.pieces}}</span>
+                        </td>
+                        <td class="price">{{items.price}}</td>
+                        <td class="actions">
+                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
+                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                        </td>
+                    </tr>
+                   
+                 
+                </table>
+                <div class="cart-summary">
+                    <div class="row">
+                        <div class="col-7 text-right text-muted">Order total:</div>
+                        <div class="col-5"><strong>₺21.02</strong></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 text-right text-muted">Devliery:</div>
+                        <div class="col-5"><strong>₺3.99</strong></div>
+                    </div>
+                    <hr class="hr-sm">
+                    <div class="row text-lg">
+                        <div class="col-7 text-right text-muted">Total:</div>
+                        <div class="col-5"><strong>₺24.21</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <router-link to="/checkout" class="panel-cart-action btn btn-secondary btn-block btn-lg">><span>Go to checkout</span></router-link>
+      
+    </div>
+    <!-- Panel Mobile -->
+    <nav id="panel-mobile">
+        <div class="module module-logo bg-dark dark">
+            <a href="#">
+                <img src="assets/img/logo-light.svg" alt="" width="88">
+            </a>
+            <button class="close" data-toggle="panel-mobile"><i class="ti ti-close"></i></button>
+        </div>
+        <nav class="module module-navigation"></nav>
+        <div class="module module-social">
+            <h6 class="text-sm mb-3">Follow Us!</h6>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-google"><i class="fa fa-google"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="fa fa-youtube"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="fa fa-instagram"></i></a>
+        </div>
+    </nav>
+
+    <!-- Body Overlay -->
+    <div id="body-overlay"></div>
     </div>
 </template>
 
@@ -52,29 +116,40 @@
 <script>
 import {mapGetters,mapActions} from 'vuex'
 import axios from 'axios'
-import { setTimeout } from 'timers';
+
 
 export default {
 
     
     computed:mapGetters(['allProducts']),
-    methods: {
+    data :{
+        
+    },
+     methods: {
       ...mapActions(['fetchProducts']),
       //...mapActions('cart',['addProductToCart']),
 
      //  addProductToCart(menuItem){ 
      //  }
     addProductToCart(id){
-     const url = "http://172.20.10.12:81/user/sepet"
 
-        axios.post(url, {
-                data: {
-                    id
-                }
-            }).then(obj => {
-                console.log(obj);
-            })
-       
+
+
+
+$.post("http://localhost:81/user/sepet", {data: id}, function(result){
+console.log(result);
+});
+
+
+  $.ajax({ 
+        type: 'GET', 
+        url: 'http://localhost:81/user/sepet/item', 
+        success: function (data) { 
+          console.log(data);
+        }
+  });
+           
+            
     }
     },
 
@@ -82,6 +157,9 @@ export default {
         created(){
     
          this.fetchProducts();
+         //this.fetchCartItems();
+
+         
    
   
     

@@ -23,7 +23,7 @@
                             <div action="#" >
                                 <div class="utility-box-content">
                                     <div class="form-group">
-                                        <label>Ad ve soyad</label>
+                                        <label>Ad ve soyad </label>
                                         <input type="text" name="name" class="form-control" v-model="booking.name" required>
                                     </div>
                                     <div class="form-group">
@@ -50,14 +50,14 @@
                                     </div>
                                 </div>
                                 <button class="utility-box-btn btn btn-secondary btn-block btn-lg btn-submit" @click="send_rez" >
-                                    <span class="description">Rezervasyon Yap!</span>
+                                    <span class="description">Rezervasyon Yap!  </span>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                    
+                   
         </section>
     </div>
 </template>
@@ -84,7 +84,7 @@ data(){
         send_rez(){
     axios({
         method: 'post',
-        url: 'http://172.20.10.12:81/rezervasyon',
+        url: 'http://localhost:81/rezervasyon',
         data: {
             name: this.booking.name,
             phone : this.booking.phone,
@@ -93,6 +93,7 @@ data(){
             email : this.booking.email
         }
     }).then(obj => {
+        console.log(obj.data);
         if(obj.data == "ok"){
        alert("Biz sizi arayacağız.");
        this.booking={}

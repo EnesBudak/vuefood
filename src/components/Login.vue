@@ -29,9 +29,7 @@
     </div>
   </div>
   <div class="col-md-3">
-<div class="alert alert-info" role="alert">
-    {{firstname}}  {{lastname}}
-</div>
+
   </div>
  </div>
  
@@ -40,14 +38,12 @@
 
 <script>
 import axios from 'axios'
-import { EventBus } from '../main';
+
 
 
 export default {
   data(){
   return{
-      firstname:'',
-      lastname:'',
        errors:[],
       userData:{
      
@@ -72,18 +68,13 @@ export default {
         this.errors.push("Yanlış email girdiniz.");        
       }
       else if(this.validEmail(this.userData.username)){
-        const url ="http://172.20.10.12:81/user/login"
+        const url ="http://localhost:81/user/login"
        
        axios.post(url,this.userData)
       .then(response => {
-        this.firstname = response.data.firstname;
-        this.lastname = response.data.lastname;
-
-        console.log(response);
         
 
-        EventBus.$emit('name',this.firstname);
-
+        console.log(response);
           
       }) 
       .catch(e => console.log(e));

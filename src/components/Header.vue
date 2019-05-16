@@ -4,7 +4,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-8  push-md-2 text-center">
+                <div class="col-md-9  push-md-2 text-center">
                     <!-- Navigation -->
                     <nav class="module module-navigation mr-4">
                         <ul id="nav-main" class="nav nav-main">
@@ -39,14 +39,49 @@
                     </div>
                    
                 
-                    <div class="module">
+                    <div class="module" v-if="userInfos.firstname != undefined ">
+                        
+                           <router-link tag="a" to="/profile">
+                            <span>          
+                        <i class="ti ti-user"></i>
+                      Selam ,{{userInfos.firstname}}
+                            </span> 
+                           </router-link>                               
+                     
+
+                      
+                    </div>
+                    <div class="module" v-else>
+                        
+                           <router-link tag="a" to="/login">
+                            <span>          
+                        <i class="ti ti-user"></i>
+                      
+                            </span> 
+                           </router-link>                               
+                     
+
+                      
+                    </div>
+
+
+                      <div v-if="userInfos.firstname != undefined "  class="module">
                         <a  href="#" >
                             <span >          
-                        <i class="ti ti-user"></i>
-                       {{changeName()}} Selam,{{firstname}}
+                        <i class="ti ti-export"></i>
+                      Çıkış Yap
                             </span>                                
                        </a>
                     </div>
+                      <div v-else  class="module">
+                        <a  href="/login" >
+                            <span >          
+                        <i class="ti ti-export"></i>
+                            Giriş yap 
+                            </span>                                
+                       </a>
+                    </div>
+                   
                                 
                                 </div>
       
@@ -85,6 +120,7 @@
     <header id="header-mobile" class="dark">
 
         <div class="module module-nav-toggle">
+            
             <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
         </div>    
 
@@ -118,14 +154,17 @@
 <script>
 import axios from 'axios'
 import {EventBus} from './../main.js'
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
    
-   data(){
-       return{
+   data () {
+      return {
            menuShow :false,
-           firstname:''
-       }
+    
+      }
+         
+       
    },
    methods :{
        showPanel(){
@@ -133,14 +172,20 @@ export default {
            this.menuShow = !this.menuShow;
            EventBus.$emit('showPanel',this.menuShow)
        },
-       changeName(){
-           EventBus.$on('name',(data) => {
-            this.firstname=data;
-           })
-           
-       }
+       ...mapActions(['fetchUserInfo'])
+    
+     
 
+   },
+   computed:mapGetters(['userInfos']),
+
+   created(){
+       this.fetchUserInfo();
+        
+       
    }
+        
+   
 }
 </script>
 

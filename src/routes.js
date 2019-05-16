@@ -5,6 +5,7 @@ import Contact from './Views/Contact.vue'
 import Booking from './Views/Booking.vue'
 import Checkout from './Views/Checkout.vue'
 import Login from './Views/Login.vue'
+import Profile from './Views/Profile.vue'
 
 
 export const routes =[
@@ -42,7 +43,11 @@ export const routes =[
     component:Login
     
     },
-   
+    {path:'/profile',
+    name:'profile',
+    component:Profile
+    
+    },
     {
         path:'*',
         component:Home

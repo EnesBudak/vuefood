@@ -12,23 +12,17 @@
                 <table class="table-cart" >
                     <tr>
                         <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal"></a></span>
-                            <span class="caption text-muted"></span>
+                            <span class="name"><a href="#productModal" data-toggle="modal">isim</a></span>
+                            <span class="caption text-muted">boyut</span>
                         </td>
-                        <td class="price"></td>
+                        <td class="price">ücret</td>
                         <td class="actions">
                             <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
                             <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
                         </td>
                     </tr>
                    
-                    <tr>
-                        <td class="title">
-                            <span class="name">Weekend 20% OFF</span>
-                        </td>
-                        <td class="price text-success">-₺8.22</td>
-                        <td class="actions"></td>
-                    </tr>
+                 
                 </table>
                 <div class="cart-summary">
                     <div class="row">
@@ -207,7 +201,7 @@
 <script>
 
 import {EventBus} from './../main.js'
-import { mapState,mapGetters } from 'vuex'
+import axios from 'axios'
 
 
 export default {
@@ -217,13 +211,12 @@ export default {
     data(){
         return{
           menuShow:false,
+         
           
         }
     },
     computed:{
-       ...mapGetters('cart',{
-           products:'cartProducts'
-       }) 
+      
       
     },
     methods:{
@@ -237,6 +230,7 @@ export default {
             
             this.menuShow = data;
         });
+        
 
         
        
