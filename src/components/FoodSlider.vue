@@ -28,45 +28,56 @@
             }'>
                 <!-- Menu Sample -->
                 <div class="menu-sample">
-                    <a href="menu-list-navigation.html#Burgers">
-                        <img src="assets/img/photos/menu-sample-burgers.jpg" alt="" class="image">
+                   <router-link tag='a' to='/product'> 
+                   <img src="assets/img/photos/menu-sample-burgers.jpg" alt="" class="image">
                         <h3 class="title">Hamburger</h3>
-                    </a>
+                        </router-link>
                 </div>
                 <!-- Menu Sample -->
                 <div class="menu-sample">
-                    <a href="menu-list-navigation.html#Pizza">
+                  
+                        <router-link tag='a' to='/product'>
+                        
                         <img src="assets/img/photos/menu-sample-pizza.jpg" alt="" class="image">
-                        <h3 class="title">Pide</h3>
-                    </a>
+                        <h3 class="title">Pide</h3>>
+                        </router-link>
+                  
                 </div>
                 <!-- Menu Sample -->
                 <div class="menu-sample">
-                    <a href="menu-list-navigation.html#Sushi">
+                   
+                        <router-link tag='a' to='/product'>
                         <img src="assets/img/photos/menu-sample-sushi.jpg" alt="" class="image">
-                        <h3 class="title">Şuşi</h3>
-                    </a>
+                        <h3 class="title">Şuşi</h3>        
+                     </router-link>
+                   
                 </div>
                 <!-- Menu Sample -->
                 <div class="menu-sample">
-                    <a href="menu-list-navigation.html#Pasta">
-                        <img src="assets/img/photos/menu-sample-pasta.jpg" alt="" class="image">
+                    
+                       <router-link tag='a' to='/product' >
+                            <img src="assets/img/photos/menu-sample-pasta.jpg" alt="" class="image">
                         <h3 class="title">Pasta</h3>
-                    </a>
+                       </router-link>
+                   
                 </div>
                 <!-- Menu Sample -->
                 <div class="menu-sample">
-                    <a href="menu-list-navigation.html#Desserts">
-                        <img src="assets/img/photos/menu-sample-dessert.jpg" alt="" class="image">
+                   
+                        <router-link tag='a' to='/product' >
+                            <img src="assets/img/photos/menu-sample-dessert.jpg" alt="" class="image">
                         <h3 class="title">Tatlılar</h3>
-                    </a>
+                        </router-link>
+                    
                 </div>
                 <!-- Menu Sample -->
                 <div class="menu-sample">
-                    <a href="menu-list-navigation.html#Drinks">
-                        <img src="assets/img/photos/menu-sample-drinks.jpg" alt="" class="image">
+                   
+                       <router-link tag='a' to='/product' >
+                            <img src="assets/img/photos/menu-sample-drinks.jpg" alt="" class="image">
                         <h3 class="title">İçecekler</h3>
-                    </a>
+                       </router-link>
+                    
                 </div>
             </div>
 

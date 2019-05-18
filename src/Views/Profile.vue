@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-12 col-lg-8 col-md-6">
                             <h3 class="mb-0 text-truncated">{{userInfos.firstname}} {{userInfos.lastname}}</h3>
-                            <p class="lead">0543 529 21 17 </p>
+                            <p class="lead">{{userInfos.phone}}</p>
                             <p>
                               {{userInfos.adress}}
                             </p>
@@ -159,10 +159,10 @@
 </template>
 <script>
 
-import axios from 'axios'
+
 
 import { mapGetters, mapActions } from 'vuex';
-import { create } from 'domain';
+
 
 export default {
     methods:{

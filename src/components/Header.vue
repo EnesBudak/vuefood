@@ -39,7 +39,7 @@
                     </div>
                    
                 
-                    <div class="module" v-if="userInfos.firstname != undefined ">
+                    <div class="module" v-if="userInfos.firstname != undefined " style="margin-right:10px" >
                         
                            <router-link tag="a" to="/profile">
                             <span>          
@@ -51,22 +51,11 @@
 
                       
                     </div>
-                    <div class="module" v-else>
-                        
-                           <router-link tag="a" to="/login">
-                            <span>          
-                        <i class="ti ti-user"></i>
-                      
-                            </span> 
-                           </router-link>                               
-                     
-
-                      
-                    </div>
+                   
 
 
                       <div v-if="userInfos.firstname != undefined "  class="module">
-                        <a  href="#" >
+                        <a  href="user/logout" >
                             <span >          
                         <i class="ti ti-export"></i>
                       Çıkış Yap
@@ -91,21 +80,14 @@
                         <a @click="showPanel()" href="#" class="module module-cart right" data-toggle="panel-cart">
                         <span class="cart-icon">
                             <i class="ti ti-shopping-cart"></i>
-                            <span class="notification">2</span>
+                            <span class="notification">{{userInfos.orderCount}}</span>
                         </span>
-                        <span class="cart-value">32.98 ₺</span>
+                        <span class="cart-value">{{userInfos.cardTotal}} ₺</span>
                     </a>
 
     
                 </div>
-             
-
             
-               
-                
-                
-                
-                
 
                
 
@@ -124,15 +106,15 @@
             <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
         </div>    
 
-        <div class="module module-logo">
+        <div class="module ">
             <a href="index.html">
-                <img src="assets/img/logo-horizontal-light.svg" alt="">
+               <!-- <img src="assets/img/logo-horizontal-light.svg" alt="">  -->
             </a>
         </div>
     
         <a @click="showPanel()" href="#" class="module module-cart" data-toggle="panel-cart">
             <i class="ti ti-shopping-cart"></i>
-            <span class="notification">2</span>
+            <span class="notification">{{userInfos.orderCount}}</span>
         </a>
 
     </header>
@@ -152,7 +134,7 @@
 </div>
 </template>
 <script>
-import axios from 'axios'
+
 import {EventBus} from './../main.js'
 import { mapGetters, mapActions } from 'vuex';
 
@@ -171,18 +153,19 @@ export default {
            
            this.menuShow = !this.menuShow;
            EventBus.$emit('showPanel',this.menuShow)
+           
        },
-       ...mapActions(['fetchUserInfo'])
-    
+       ...mapActions(['fetchUserInfo']),
+
      
 
    },
    computed:mapGetters(['userInfos']),
 
    created(){
-       this.fetchUserInfo();
-        
-       
+    //    this.fetchUserInfo();
+    this.$store.dispatch('fetchUserInfo')
+    // console.log(this.userInfos);
    }
         
    

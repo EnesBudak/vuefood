@@ -9,13 +9,16 @@
                 <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
             </div>
             <div class="panel-cart-content" >
-                <table class="table-cart" >
-                    <tr>
+                 <table class="table-cart" >
+                    <tr
+                        v-for="cartItem in allCartItems"
+                        :key="cartItem.id"
+                    > 
                         <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal">isim</a></span>
-                            <span class="caption text-muted">boyut</span>
+                            <span class="name"><a href="#productModal" data-toggle="modal">{{cartItem.name}}</a></span>
+                            <span class="caption text-muted">x{{cartItem.count}}</span>
                         </td>
-                        <td class="price">ücret</td>
+                        <td class="price">{{cartItem.price}} ₺</td>
                         <td class="actions">
                             <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
                             <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
@@ -23,25 +26,30 @@
                     </tr>
                    
                  
-                </table>
-                <div class="cart-summary">
-                    <div class="row">
-                        <div class="col-7 text-right text-muted">Order total:</div>
-                        <div class="col-5"><strong>₺21.02</strong></div>
+                </table> 
+                <div>
+                    
+                </div>
+                 <div class="cart-summary"  >
+                    <div class="row"  >
+                        <div class="col-7 text-right text-muted">Sipariş Toplam:</div>
+                        <div class="col-5"><strong>{{userInfos.cardTotal}} ₺</strong></div>
                     </div>
                     <div class="row">
-                        <div class="col-7 text-right text-muted">Devliery:</div>
-                        <div class="col-5"><strong>₺3.99</strong></div>
+                        <div class="col-7 text-right text-muted">KDV:</div>
+                        <div class="col-5"><strong>0 ₺</strong></div>
                     </div>
                     <hr class="hr-sm">
                     <div class="row text-lg">
-                        <div class="col-7 text-right text-muted">Total:</div>
-                        <div class="col-5"><strong>₺24.21</strong></div>
+                        <div class="col-7 text-right text-muted">Toplam:</div>
+                        <div class="col-5"><strong>
+                            {{userInfos.cardTotal}}₺</strong></div>
                     </div>
-                </div>
+                </div> 
+            
             </div>
         </div>
-       <router-link to="/checkout" class="panel-cart-action btn btn-secondary btn-block btn-lg">><span>Go to checkout</span></router-link>
+       <router-link to="/checkout" class="panel-cart-action btn btn-secondary btn-block btn-lg">><span>Alışverişi Tamamla</span></router-link>
       
     </div>
     <!-- Panel Mobile -->
@@ -202,6 +210,7 @@
 
 import {EventBus} from './../main.js'
 import axios from 'axios'
+import { mapActions,mapGetters,mapState } from 'vuex';
 
 
 export default {
@@ -215,13 +224,13 @@ export default {
           
         }
     },
-    computed:{
+    computed:mapGetters(['allCartItems','userInfos']),
       
-      
-    },
+   
     methods:{
         
-        
+            // ...mapActions(['fetchCartItems']),
+
         
 
     },
@@ -231,9 +240,9 @@ export default {
             this.menuShow = data;
         });
         
-
-        
        
+        // this.fetchCartItems();
+        // console.log(this.allCartItems); 
     },
      
         

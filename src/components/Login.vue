@@ -38,6 +38,7 @@
 
 <script>
 import axios from 'axios'
+import { setInterval } from 'timers';
 
 
 
@@ -75,7 +76,17 @@ export default {
         
 
         console.log(response);
-          
+        if(response.status != false){
+          //this.$router.go(this.$router.currentRoute)
+
+         window.location.href = "home";
+      
+         setInterval(() =>{
+       
+         window.location.href = "home";
+         },500)
+        
+        }
       }) 
       .catch(e => console.log(e));
         

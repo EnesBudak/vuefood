@@ -22,61 +22,35 @@
                     <div class="col-xl-4 push-xl-8 col-lg-5 push-lg-7">
                         <div class="shadow bg-white stick-to-content mb-4">
                             <div class="bg-dark dark p-4"><h5 class="mb-0">Siparişiniz</h5></div>
-                            <table class="table-cart">
-                                <tr>
-                                    <td class="title">
-                                        <span class="name"><a href="#productModal" data-toggle="modal">Pizza Chicked BBQ</a></span>
-                                        <span class="caption text-muted">26”, deep-pan, thin-crust</span>
-                                    </td>
-                                    <td class="price">$9.82</td>
-                                    <td class="actions">
-                                        <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                                        <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title">
-                                        <span class="name"><a href="#productModal" data-toggle="modal">Beef Burger</a></span>
-                                        <span class="caption text-muted">Large (500g)</span>
-                                    </td>
-                                    <td class="price">$9.82</td>
-                                    <td class="actions">
-                                        <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                                        <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title">
-                                        <span class="name"><a href="#productModal" data-toggle="modal">Extra Burger</a></span>
-                                        <span class="caption text-muted">Small (200g)</span>
-                                    </td>
-                                    <td class="price text-success">$0.00</td>
-                                    <td class="actions">
-                                        <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                                        <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="title">
-                                        <span class="name">Weekend 20% OFF</span>
-                                    </td>
-                                    <td class="price text-success">-$8.22</td>
-                                    <td class="actions"></td>
-                                </tr>
-                            </table>
-                            <div class="cart-summary">
+                           <table class="table-cart" v-for="cartItem in allCartItems" :key="cartItem.id" >
+                    <tr  v-for="item in cartItem.product" :key="item.id"> 
+                        <td class="title">
+                            <span class="name"><a href="#productModal" data-toggle="modal">{{item.name}}</a></span>
+                            <span class="caption text-muted"></span>
+                        </td>
+                        <td class="price">{{item.price}} ₺</td>
+                        <td class="actions">
+                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
+                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                        </td>
+                    </tr>
+                   
+                 
+                </table>
+                            <div class="cart-summary" v-for="cartItem in allCartItems" :key="cartItem.id">
                                 <div class="row">
-                                    <div class="col-7 text-right text-muted">Order total:</div>
-                                    <div class="col-5"><strong>$21.02</strong></div>
+                                    <div class="col-7 text-right text-muted">Sipariş  Toplamı:</div>
+                                    <div class="col-5"><strong>{{cartItem.cardTotal}} ₺</strong></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-7 text-right text-muted">Devliery:</div>
-                                    <div class="col-5"><strong>$3.99</strong></div>
+                                    <div class="col-7 text-right text-muted">KDV:</div>
+                                    <div class="col-5"><strong>0 ₺</strong></div>
                                 </div>
                                 <hr class="hr-sm">
                                 <div class="row text-md">
-                                    <div class="col-7 text-right text-muted">Total:</div>
-                                    <div class="col-5"><strong>$24.21</strong></div>
+                                    <div class="col-7 text-right text-muted">Toplam:</div>
+                                    <div class="col-5"><strong>
+                                        {{cartItem.cardTotal}} ₺</strong></div>
                                 </div>
                             </div>
                         </div>
@@ -163,3 +137,22 @@
 
     </div>
 </template>
+
+<script>
+import axios from 'axios'
+import {mapActions,mapGetters,mapState} from 'vuex'
+
+export default {
+    
+    computed:mapGetters(['allCartItems']),
+    methods:{
+        ...mapActions(['fetchCartItems']),
+    },
+
+    created(){
+
+     this.fetchCartItems();
+
+    }
+}
+</script>
