@@ -22,13 +22,14 @@
                     <div class="col-xl-4 push-xl-8 col-lg-5 push-lg-7">
                         <div class="shadow bg-white stick-to-content mb-4">
                             <div class="bg-dark dark p-4"><h5 class="mb-0">Siparişiniz</h5></div>
-                           <table class="table-cart" v-for="cartItem in allCartItems" :key="cartItem.id" >
-                    <tr  v-for="item in cartItem.product" :key="item.id"> 
+                           <table class="table-cart"  >
+                    <tr v-for="cartItem in allCartItems"
+                        :key="cartItem.id" > 
                         <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal">{{item.name}}</a></span>
+                            <span class="name"><a href="#productModal" data-toggle="modal">{{cartItem.name}}</a></span>
                             <span class="caption text-muted"></span>
                         </td>
-                        <td class="price">{{item.price}} ₺</td>
+                        <td class="price">{{cartItem.price}} ₺</td>
                         <td class="actions">
                             <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
                             <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
@@ -37,10 +38,10 @@
                    
                  
                 </table>
-                            <div class="cart-summary" v-for="cartItem in allCartItems" :key="cartItem.id">
+                            <div class="cart-summary" >
                                 <div class="row">
                                     <div class="col-7 text-right text-muted">Sipariş  Toplamı:</div>
-                                    <div class="col-5"><strong>{{cartItem.cardTotal}} ₺</strong></div>
+                                    <div class="col-5"><strong>{{userInfos.cardTotal}} ₺</strong></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-7 text-right text-muted">KDV:</div>
@@ -50,7 +51,7 @@
                                 <div class="row text-md">
                                     <div class="col-7 text-right text-muted">Toplam:</div>
                                     <div class="col-5"><strong>
-                                        {{cartItem.cardTotal}} ₺</strong></div>
+                                        {{userInfos.cardTotal}} ₺</strong></div>
                                 </div>
                             </div>
                         </div>
@@ -59,30 +60,43 @@
                         <div class="bg-white p-4 p-md-5 mb-4">
                             <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Kişisel Bilgiler</h4>
                             <div class="row mb-5">
-                                <div class="form-group col-sm-6">
-                                    <label>Ad</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>Soyad</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>Adres</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>Şehir</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>Telefon</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>E-posta </label>
-                                    <input type="email" class="form-control">
-                                </div>
+                                <!-- Paragraph -->
+ 
+
+<!-- Modal / Demo -->
+        <div class="modal fade" id="demoModal" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Adres Değiştir</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        Eski Adres:{{userInfos.adress}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+                        <div class="example-box">
+                            <div class="example-box-title">Adres
+                                <a href="#" data-target="#demoModal" data-toggle="modal"  style="float:right"   class="action-icon "><i class="ti ti-pencil"></i></a>
+                           
+                            </div>
+                            <div class="example-box-content">
+                                <p class="lead">Ad:{{userInfos.firstname}} {{userInfos.lastname}} </p>
+
+                                <p class="lead">Telefon :{{userInfos.phone}} </p>
+                                <p class="lead">Adres :{{userInfos.adress}}  </p>
+                            </div>
+                        </div>
+
+                               
                             </div>
 
                             <h4 class="border-bottom pb-4"><i class="ti ti-package mr-3 text-primary"></i>Teslim</h4>
@@ -90,11 +104,14 @@
                                 <div class="form-group col-sm-6">
                                     <label>Teslim  zamanı:</label>
                                     <div class="select-container">
-                                        <select class="form-control">
-                                            <option>Mümkünse hızlı olsun</option>
-                                            <option>1 Saat içinde </option>
-                                            <option>2 Saat içinde</option>
+                                        <select class="form-control" v-model="order.selected">
+                                             <option disabled value="">Lütfen seçiniz </option>
+                                            <option value="0">Mümkünse hızlı olsun</option>
+                                            <option value="1">1 Saat içinde </option>
+                                            <option value="0">2 Saat içinde</option>
+                                            
                                         </select>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -103,29 +120,30 @@
                             <div class="row text-lg">
                                 <div class="col-md-4 col-sm-6 form-group">
                                     <label class="custom-control custom-radio">
-                                        <input type="radio" name="payment_type" class="custom-control-input">
+                                        <input type="radio" id="one" name="payment_type" class="custom-control-input" v-model="order.picked" value="0" >
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Kapıda Kart İle Ödeme</span>
                                     </label>
                                 </div>
                                 <div class="col-md-4 col-sm-6 form-group">
                                     <label class="custom-control custom-radio">
-                                        <input type="radio" name="payment_type" class="custom-control-input">
+                                        <input type="radio" id="two" name="payment_type" class="custom-control-input" v-model="order.picked" value="1">
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Kredi Kartı </span>
                                     </label>
                                 </div>
                                 <div class="col-md-4 col-sm-6 form-group">
                                     <label class="custom-control custom-radio">
-                                        <input type="radio" name="payment_type" class="custom-control-input">
+                                        <input type="radio" id="three" name="payment_type" class="custom-control-input" v-model="order.picked" value="2">
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Nakit</span>
                                     </label>
                                 </div>
                             </div>
+                            
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-primary btn-lg"><span>Sipariş Et!</span></button>
+                            <button class="btn btn-primary btn-lg" @click="sendOrderDetail"><span>Sipariş Et!</span></button>
                         </div>
                     </div>
                 </div>
@@ -142,11 +160,71 @@
 import axios from 'axios'
 import {mapActions,mapGetters,mapState} from 'vuex'
 
+import swal from 'sweetalert';
+
 export default {
+    data(){
+        return{
+            order:{
+            picked:'',
+            selected:'',
+            adressChanged:false,
+            }
+        }
+    },
     
-    computed:mapGetters(['allCartItems']),
+    computed:mapGetters(['allCartItems','userInfos']),
     methods:{
         ...mapActions(['fetchCartItems']),
+
+    async sendOrderDetail(){
+        
+   /* axios.post('htpp://localhost:81/user/odeme',this.order)
+    .then((response) =>{
+      console.log(response);
+    console.log(this.order);
+    
+     
+    }) */
+            const order=  await this.$store.dispatch('setOrderDetail',this.order);
+            console.log("order",order)
+  
+            try {
+
+                if(!order.message.error && (this.order.picked == 0  || this.order.picked == 2) ){
+                // if(this.order.picked == '0' || this.order.picked == '2'){
+                //     this.$router.push('complete')
+                // }else{
+                //     console.log('hata');
+                    
+                // }
+                  swal({
+                                title: "Siparişiniz Verildi!",
+                                text: "",
+                                icon:'success',
+                                button:'Devam Et!'
+                            
+                        }).then( ()  =>{
+                    
+                    console.log("çalıştı",order)
+                        })
+                  
+                    
+                  
+                    
+                }else{
+                    console.log('hata!')
+                } 
+                
+            } catch (error) {
+                console.log('istek atılamadı')
+            }
+                
+        
+           
+    
+  
+        }
     },
 
     created(){

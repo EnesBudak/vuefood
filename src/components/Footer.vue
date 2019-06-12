@@ -40,7 +40,7 @@
                 </div>
                 <!-- Footer 2nd Row -->
                 <div class="footer-second-row">
-                    <span class="text-muted">Copyright 2019</span>
+                    <span class="text-muted">Copyright 2019 | Ay-Soft</span>
                 </div>
             </div>
 

@@ -10,8 +10,8 @@
                         <div class="feature feature-1 mb-md-0 animated" data-animation="fadeIn">
                             <div class="feature-icon icon icon-primary"><i class="ti ti-shopping-cart"></i></div>
                             <div class="feature-content">
-                                <h4 class="mb-2"><a href="menu-list-collapse.html">Yemeği Seç</a></h4>
-                                <p class="text-muted mb-0">Vivamus volutpat leo dictum risus ullamcorper condimentum.</p>
+                                <h4 class="mb-2"><router-link tag="a" to="/product">Yemeği Seç</router-link></h4>
+                                <p class="text-muted mb-0">Hemen Yemeğini Seç !.</p>
                             </div>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                             <div class="feature-icon icon icon-primary"><i class="ti ti-wallet"></i></div>
                             <div class="feature-content">
                                 <h4 class="mb-2">Ödeme Yap</h4>
-                                <p class="text-muted mb-0">Vivamus volutpat leo dictum risus ullamcorper condimentum.</p>
+                                <p class="text-muted mb-0">Hızlı ödemeden yararlan !</p>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                             <div class="feature-icon icon icon-primary"><i class="ti ti-package"></i></div>
                             <div class="feature-content">
                                 <h4 class="mb-2">Yiyeceğini Al!</h4>
-                                <p class="text-muted mb-3">Vivamus volutpat leo dictum risus ullamcorper condimentum.</p>
+                                <p class="text-muted mb-3">30 dakikada yemeğin kapında !</p>
                             </div>
                         </div>
                     </div>

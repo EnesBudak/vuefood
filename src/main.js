@@ -6,6 +6,7 @@ import store from './store/index'
 
 
 Vue.use(VueRouter)
+
 /* eslint-disable no-new */
 export const EventBus = new Vue();
 

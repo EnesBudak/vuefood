@@ -29,7 +29,7 @@
                             <p class="lead">{{userInfos.email}}</p>
                         </div>
                         <div class="col-12 col-lg-4 col-md-6 text-center">
-                            <img src="https://robohash.org/68.186.255.198.png" alt="" class="mx-auto rounded-circle img-fluid">
+                            <img src="http://www.ay-soft.com/images/logo.png" alt="" class="mx-auto rounded-circle img-fluid">
                             <br>
                             <ul class="list-inline ratings text-center" title="Ratings">
                                 <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
@@ -72,38 +72,33 @@
                 <div class="tab-pane" id="kargotakip">
                     <h4 class="m-y-2">Sipariş Takip</h4>
                     
-                   <table class="table table-bordered">
+                   <table class="table ">
         <thead>
           <tr>
+        
             <th scope="col">#</th>
+            <th></th>
             <th scope="col">Sipariş No</th>
             <th scope="col">İçerik</th>
             <th scope="col">Tutar</th>
             <th scope="col">Durumu</th>
+        
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>14</td>
-            <td>Kuş Başı Pide</td>
-            <td>14.99 TL</td>
-            <td>Hazırlanıyor</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>15</td>
-            <td>Adana Kepap</td>
-            <td>40 TL</td>
-            <td>Hazırlanıyor</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>15</td>
-            <td>Pizza</td>
-            <td>52 TL</td>
-            <td>Hazırlanıyor</td>
-          </tr>
+        <tbody  >
+          <tr  v-for="(infos,index) in (userOrderInfos)" :key="infos.id" >
+            
+            <td>{{index}}<td>
+            <td>{{infos.order_id}}</td>
+           <td>
+                <label v-for="order in infos.orders" :key="order.id"> {{order.count}}x - {{order.name}}  </label>
+           </td>
+
+            <td>{{infos.order_amount}}</td>
+            <td>{{infos.m_status}}</td> 
+         
+       
+           </tr>
         </tbody>
       </table>
                             
@@ -166,13 +161,14 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
     methods:{
-         ...mapActions(['fetchUserInfo'])
+         ...mapActions(['fetchUserInfo','fetchUserOrder'])
     
 
     },
-    computed:mapGetters(['userInfos']),
+    computed:mapGetters(['userInfos','userOrderInfos']),
     created(){
             this.fetchUserInfo();
+            this.fetchUserOrder();
     }
 
     

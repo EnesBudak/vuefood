@@ -21,8 +21,13 @@
                         <td class="price">{{cartItem.price}} ₺</td>
                         <td class="actions">
                             <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+
+
+                            <div style="cursor:pointer;" @click="deleteCartItem(cartItem.id)" class="action-icon"><i class="ti ti-close"></i></div>
+                         
+                       
                         </td>
+
                     </tr>
                    
                  
@@ -81,14 +86,14 @@
         <div class="modal-content">
             <div class="modal-header modal-header-lg dark bg-dark">
                 <div class="bg-image"><img src="assets/img/photos/modal-add.jpg" alt=""></div>
-                <h4 class="modal-title">Specify your dish</h4>
+                <h4 class="modal-title">Ürünü özelleştirin</h4>
                 <button type="button" class="close" data-dismiss="modal"  aria-label="Close"><i class="ti-close"></i></button>
             </div>
             <div class="modal-product-details">
                 <div class="row align-items-center">
                     <div class="col-9">
-                        <h6 class="mb-0">Boscaiola Pasta</h6>
-                        <span class="text-muted">Pasta, Cheese, Tomatoes, Olives</span>
+                        <h6 class="mb-0">Yemek İsmi  Gelecek</h6>
+                        <span class="text-muted">Yemek İçerigi Gelecek</span>
                     </div>
                     <div class="col-3 text-lg text-right">₺9.00</div>
                 </div>
@@ -101,7 +106,7 @@
                             <input name="radio_title_size" type="radio" class="custom-control-input">
                             <span class="custom-control-indicator"></span>
                         </label>
-                        <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
+                        <a href="#panelDetailsSize" data-toggle="collapse">Porsiyon</a>
                     </h5>
                     <div id="panelDetailsSize" class="collapse show">
                         <div class="panel-details-content">
@@ -109,21 +114,21 @@
                                 <label class="custom-control custom-radio">
                                     <input name="radio_size" type="radio" class="custom-control-input" checked>
                                     <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">Small - 100g (₺9.99)</span>
+                                    <span class="custom-control-description">1 Porsiyon - 100g (9.99₺)</span>
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label class="custom-control custom-radio">
                                     <input name="radio_size" type="radio" class="custom-control-input">
                                     <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">Medium - 200g (₺14.99)</span>
+                                    <span class="custom-control-description">1.5 Porsiyon - 200g (14.99₺)</span>
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label class="custom-control custom-radio">
                                     <input name="radio_size" type="radio" class="custom-control-input">
                                     <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">Large - 350g (₺21.99)</span>
+                                    <span class="custom-control-description">2 Porsiyon - 350g (21.99₺)</span>
                                 </label>
                             </div>
                         </div>
@@ -136,7 +141,7 @@
                             <input name="radio_title_additions" type="radio" class="custom-control-input">
                             <span class="custom-control-indicator"></span>
                         </label>
-                        <a href="#panelDetailsAdditions" data-toggle="collapse">Additions</a>
+                        <a href="#panelDetailsAdditions" data-toggle="collapse">Ek Mazlemeler</a>
                     </h5>
                     <div id="panelDetailsAdditions" class="collapse">
                         <div class="panel-details-content">
@@ -146,21 +151,21 @@
                                         <label class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input">
                                             <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Tomato (₺1.29)</span>
+                                            <span class="custom-control-description">Meksika Sos (1.29₺)</span>
                                         </label>
                                     </div>
                                     <div class="form-group">
                                         <label class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input">
                                             <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Ham (₺1.29)</span>
+                                            <span class="custom-control-description">Hatay Sos (1.29₺)</span>
                                         </label>
                                     </div>
                                     <div class="form-group">
                                         <label class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input">
                                             <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Chicken (₺1.29)</span>
+                                            <span class="custom-control-description">Ek Kaşar Peyniri (1.29₺)</span>
                                         </label>
                                     </div>
                                 </div>
@@ -169,14 +174,14 @@
                                         <label class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input">
                                             <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Cheese(₺1.29)</span>
+                                            <span class="custom-control-description">Özel Zeki Usta Sos(1.29₺)</span>
                                         </label>
                                     </div>
                                     <div class="form-group">
                                         <label class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input">
                                             <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Bacon (₺1.29)</span>
+                                            <span class="custom-control-description">Ek Dana Sucuk (1.29₺)</span>
                                         </label>
                                     </div>
                                 </div>
@@ -191,14 +196,15 @@
                             <input name="radio_title_other" type="radio" class="custom-control-input">
                             <span class="custom-control-indicator"></span>
                         </label>
-                        <a href="#panelDetailsOther" data-toggle="collapse">Other</a>
+                        <a href="#panelDetailsOther" data-toggle="collapse">Diğer</a>
                     </h5>
                     <div id="panelDetailsOther" class="collapse">
                         <textarea cols="30" rows="4" class="form-control" placeholder="Put this any other informations..."></textarea>
                     </div>
                 </div>
             </div>
-            <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal"><span>Add to Cart</span></button>
+           
+            <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg"  data-dismiss="modal"><span>Sepete Ekle</span></button>
         </div>
     </div>
 </div> 
@@ -230,7 +236,10 @@ export default {
     methods:{
         
             // ...mapActions(['fetchCartItems']),
-
+        deleteCartItem(productId){
+            console.log('silinecek id',productId)
+            this.$store.dispatch('deleteCartItem',productId)
+        }
         
 
     },

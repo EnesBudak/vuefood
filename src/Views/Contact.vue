@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 push-lg-1 col-md-6">
-                        <img src="assets/img/logo-horizontal-dark.svg" alt="" class="mb-5" width="130">
+                        <img src="assets/img/logo-zekiusta.png" alt="" class="mb-5" width="130">
                         <h4 class="mb-0">Kebapçı Zeki Usta</h4>
                         <span class="text-muted">Adana Seyhan</span>
                         <hr class="hr-md">

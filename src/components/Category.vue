@@ -1,5 +1,6 @@
 <template>
     <div>
+        
           <!-- Page Content -->
         <div class="page-content">
             <div class="container">
@@ -29,12 +30,12 @@
                                         <div class="col-sm-6 text-sm-right ">
                                          <span class="text-md mr-4"><span class="text-muted"></span>{{menuItem.price}} ₺</span>
             <button class="btn btn-outline-secondary btn-sm" data-target="#productModal"  @click="addProductToCart(menuItem)"><span>Sepete Ekle</span></button>
+              
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Menu Item -->
-                               
-                              
+                             
                             </div>
                             
                         </div>
@@ -56,16 +57,23 @@
 <script>
 import {mapGetters,mapActions} from 'vuex'
 import axios from 'axios'
+import swal from 'sweetalert';
 
 
 export default {
    
+data(){
+    return{
+        itemName:'enes',
+    }
+},
 
     
-    computed:mapGetters(['allProducts']),
+    computed:mapGetters(['allProducts','userInfos']),
   
      methods: {
       ...mapActions(['fetchProducts']),
+      
       //...mapActions('cart',['addProductToCart']),
 
      //  addProductToCart(menuItem){ 
@@ -78,16 +86,32 @@ export default {
         //     console.log(response);
         // })
         this.$store.dispatch("addCartItem",menuItem)
-   
-
+        
+        
+       if(this.userInfos.firstname != undefined) {
+          swal({
+                title: "Sepete Eklendi!",
+                text: menuItem.name,
+                icon:'success',
+                button:'Devam Et!',
+                timer:1000,
+            
+          });
+       }else{
+           swal({
+               title:'Lütfen Giriş Yapın',
+               icon:'error'
+           })
+       }
     },
-      
+  
     },
 
 
         created(){
     
          this.fetchProducts();
+    
          //this.fetchCartItems();
 
          

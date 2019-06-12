@@ -19,7 +19,7 @@
                             <li class="nav-item">
               <router-link to="/product" class="has-dropdown">Menü</router-link>
             </li>
-                            <li><a href="page-offers.html">İndİrİmler</a></li>
+                          <!--  <li><a href="page-offers.html">İndİrİmler</a></li> -->
                            
                          
                             
