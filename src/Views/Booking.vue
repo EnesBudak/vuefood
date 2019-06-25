@@ -64,6 +64,7 @@
 
 <script>
 import axios from 'axios'
+import swal from 'sweetalert'
 
 export default{
 
@@ -95,8 +96,17 @@ data(){
     }).then(obj => {
         console.log(obj.data);
         if(obj.data == "ok"){
-       alert("Biz sizi arayacağız.");
+           swal("Biz sizi arayacağız!", "", "success", {
+                button: "Devam Et!",
+                timer:1500
+      })
        this.booking={}
+        }else{
+              swal("Hata !", "", "warning", {
+                button: "Devam Et!",
+                timer:1500
+      })
+
         }
     })
 

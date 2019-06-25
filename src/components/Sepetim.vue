@@ -239,6 +239,9 @@ export default {
         deleteCartItem(productId){
             console.log('silinecek id',productId)
             this.$store.dispatch('deleteCartItem',productId)
+            .then(() =>{
+                location.reload();
+            })
         }
         
 

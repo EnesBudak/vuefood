@@ -108,7 +108,7 @@
                                              <option disabled value="">Lütfen seçiniz </option>
                                             <option value="0">Mümkünse hızlı olsun</option>
                                             <option value="1">1 Saat içinde </option>
-                                            <option value="0">2 Saat içinde</option>
+                                            <option value="2">2 Saat içinde</option>
                                             
                                         </select>
                                         

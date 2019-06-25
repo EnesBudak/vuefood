@@ -25,7 +25,7 @@
                     <h2>Adananın En İyi Yemekleri</h2>
                     <p class="lead">Zeki ustanın yemeklerini hâlen tatmadınız mı ?...</p>
                     <p>Yıllardan beri adananın en ünlü kebapçısı olarak hizmet vermekte olan Zeki Usta bir gün sizi de misafir etmek ister.Hemen rezervasyon yapabilir ya da online sipariş edebilirsiniz!</p>
-                    <h6>Zeki Usta, Şef</h6>
+                    <h6>Ramazan Çakır, Şef</h6>
                     <img src="assets/img/svg/sign.svg" alt="" class="mb-5">
                    
                 </div>
