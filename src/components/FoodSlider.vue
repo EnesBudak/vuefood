@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="overflow-x:hidden">
         
         <!-- Section - Menu -->
         <section class="section cover protrude pull-up-20">
@@ -29,8 +29,8 @@
                 <!-- Menu Sample -->
                 <div class="menu-sample">
                    <router-link tag='a' to='/product'> 
-                   <img src="assets/img/photos/menu-sample-burgers.jpg" alt="" class="image">
-                        <h3 class="title">Hamburger</h3>
+                   <img src="assets/img/photos/kebabcat.jpg" alt="" class="image">
+                        <h3 class="title">Kebaplar</h3>
                         </router-link>
                 </div>
                 <!-- Menu Sample -->
@@ -38,8 +38,8 @@
                   
                         <router-link tag='a' to='/product'>
                         
-                        <img src="assets/img/photos/menu-sample-pizza.jpg" alt="" class="image">
-                        <h3 class="title">Pide</h3>>
+                        <img src="assets/img/photos/izgaracat.jpg" alt="" class="image">
+                        <h3 class="title">Izgaralar</h3>>
                         </router-link>
                   
                 </div>
@@ -47,8 +47,8 @@
                 <div class="menu-sample">
                    
                         <router-link tag='a' to='/product'>
-                        <img src="assets/img/photos/menu-sample-sushi.jpg" alt="" class="image">
-                        <h3 class="title">Şuşi</h3>        
+                        <img src="assets/img/photos/köftecat.jpg" alt="" class="image">
+                        <h3 class="title">Çiğköfte</h3>        
                      </router-link>
                    
                 </div>
@@ -56,8 +56,8 @@
                 <div class="menu-sample">
                     
                        <router-link tag='a' to='/product' >
-                            <img src="assets/img/photos/menu-sample-pasta.jpg" alt="" class="image">
-                        <h3 class="title">Pasta</h3>
+                            <img src="assets/img/photos/dürümcat.jpg" alt="" class="image">
+                        <h3 class="title">Dürümler</h3>
                        </router-link>
                    
                 </div>

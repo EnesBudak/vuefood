@@ -9,7 +9,7 @@
 <ul class="nav nav-pills nav-fill mb-3" role="tablist">
     <li class="nav-item"><a class="nav-link active" href="#profile" aria-controls="home" role="tab" data-toggle="tab">Profil</a></li>
         <li class="nav-item"><a class="nav-link" href="#kargotakip" aria-controls="profile" role="tab" data-toggle="tab">Sipariş Takip</a></li>
-    <li class="nav-item"><a class="nav-link" href="#edit" aria-controls="messages" role="tab" data-toggle="tab">Düzenleme</a></li>
+  <!--  <li class="nav-item"><a class="nav-link" href="#edit" aria-controls="messages" role="tab" data-toggle="tab">Düzenleme</a></li> -->
 </ul>
 
             <div class="tab-content p-b-3">
@@ -44,6 +44,7 @@
                                 </li>
                             </ul>
                         </div>
+                         <!--
                         <div class="col-12 col-lg-4">
                             <h3 class="mb-0">20</h3>
                             <small>Sipariş Sayısı</small>
@@ -59,7 +60,8 @@
                             <small>Devam Etmekte Olan Siparişler</small>
                            
                         </div>
-                        <!--/col-->
+                        /col-->
+                        
                     </div>
                     <!--/row-->
                 </div>

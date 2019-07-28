@@ -8,7 +8,7 @@
             <div class="bg-image bg-video-placeholder zooming"><img src="assets/img/photos/bg-restaurant.jpg" alt=""></div>
 
             <div class="container v-center text-center">
-                <img src="assets/img/logo-zekiusta.png" alt="" width="200" class="mb-5">
+               
                 <h1 class="display-2 mb-2">Adana'nın En İyi Kebapçısı</h1>
                 <h4 class="text-muted mb-5">Şipariş etmeye ne dersiniz ?</h4>
                 

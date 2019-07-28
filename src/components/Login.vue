@@ -14,23 +14,36 @@
   <div class="col-md-6">
      <div class="validate-form">
     <div class="form-group">
+     <i class="ti ti-email text-primary mr-2"> </i>
+
         <label>E-mail</label>
         <input v-model="userData.username" name="email" type="email" class="form-control" id="email" >
     </div>
     <div class="form-group">
+     <i class="ti ti-key text-primary mr-2"> </i>
+
         <label>Şifre</label>
        <input v-model="userData.password" name="Şifre" type="password" id="password" class="form-control" >
     </div>
     <div class="form-group ">
-        <button  @click="checkForm"   value="submit" type="submit"  class="btn btn-success btn-block"><span>Giriş Yap!
+        <button  @click="checkForm"    class="btn btn-success btn-block"><span>Giriş Yap!
           </span></button>
     
     </div>
     </div>
   </div>
   <div class="col-md-3">
-
+    
   </div>
+
+ 
+   <div class="col-md-3"></div>
+   
+    <div class="col-md-9">
+    <h4> Üyeliğiniz yok mu?  <router-link tag='a' to='/uyeol'> 
+       <span class="lead" style="color:blue">  Yeni Üyelik!</span></router-link>  </h4>
+  </div>
+
  </div>
  
 </div>
@@ -69,22 +82,22 @@ export default {
         this.errors.push("Yanlış email girdiniz.");        
       }
       else if(this.validEmail(this.userData.username)){
-        const url ="http://localhost:81/user/login"
+        const url ="user/login"
        
        axios.post(url,this.userData)
       .then(response => {
         
 
-        console.log(response);
+        console.log(response.data);
         if(response.status != false){
           //this.$router.go(this.$router.currentRoute)
 
          window.location.href = "home";
       
-         setInterval(() =>{
+        // setInterval(() =>{
        
-         window.location.href = "home";
-         },500)
+       //  window.location.href = "home";
+       //  },500)
         
         }
       }) 

@@ -10,9 +10,47 @@
                     <div class="col-lg-3 text-center">
                         <a href="index.html"><img src="assets/img/logo-zekiusta.png" alt="" width="150" class="mt-5 mb-5"></a>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                       
+                    <div class="col-lg-2 col-md-3">
+                  
+                  
+                     <ul class="nav nav-main mt-5">
+                              <router-link to="/contact" tag="a">
+                        <li  class="nav-item text-primary">
+                           iletişim
+                        </li>
+                                 </router-link>
+                    </ul>
+                    <ul class="nav nav-main mt-5">
+                              <router-link to="/booking" tag="a">
+                        <li  class="nav-item text-primary">
+                           Rezervasyon
+                        </li>
+                                 </router-link>
+                    </ul>
                     </div>
+                     <div class="col-lg-2 col-md-3">
+                    <ul class="nav nav-main mt-5">
+                       
+                            <router-link to="/about" tag="a">
+                        <li  class="nav-item text-primary">
+                            Hakkımızda
+                        </li>
+                                 </router-link>
+                            
+                                 
+                        
+                    </ul>
+                    <ul class="nav nav-main mt-5">
+                              <router-link to="/product" tag="a">
+                        <li  class="nav-item text-primary">
+                            Menu
+                        </li>
+                                 </router-link>
+                    </ul>
+                   
+                  
+                    </div>
+                   
                     <div class="col-lg-5 col-md-6">
                         <h5 class="text-muted">Abone Ol!</h5>
                         <!-- MailChimp Form -->

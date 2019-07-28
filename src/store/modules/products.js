@@ -1,4 +1,5 @@
 import axios from 'axios'
+import swal from 'sweetalert'
 
 
 const state = {
@@ -23,17 +24,25 @@ const getters = {
 const actions = {
  async fetchProducts({commit}){
  
-  const response = await axios.get('http://localhost:81/api/menu');
+  const response = await axios.get('api/menu');
   commit('setProducts', response.data)
- // console.log(response);
   
-
 },
 
+increment({commit},id){
+
+commit('increment',id)
+},
+decrement({commit},id){
+
+  commit('decrement',id)
+  },
 
 fetchUserInfo({commit}){
-  //http://localhost:81/user/data
-  axios.get('http://localhost:81/user/data')
+
+  
+  
+  axios.get('private/demo.php')
   .then(result=>{
     console.log({msg:"fetching is success",data:result.data})
     commit('setUserInfo', result.data)
@@ -50,12 +59,13 @@ fetchUserInfo({commit}){
 
 
 setOrderDetail({commit},order){
-
   
-    
-  return axios.post('http://localhost:81/payment',order)
+  console.log("front",order) 
+  return axios.post('user/payment',order)
+     
+        
          .then((response) =>{
-         console.log(response); 
+         console.log("back",response); 
          commit('setOrderInfo',response.data)
          return {message:{success:"success"}}
          })
@@ -66,16 +76,13 @@ setOrderDetail({commit},order){
          })
 
 
-    
-     //sipariş postu edilecek 
-
-
 },
 
 addCartItem({commit},payload){
-
-  axios.post('http://localhost:81/user/sepet',payload.id)
+ 
+  axios.post('user/sepet',{id :payload.id,count: payload.count})
   .then( (response) =>{
+  
     console.log('payload (addCartItem action)',payload)
     commit("addCartItem",payload)
   })
@@ -83,6 +90,7 @@ addCartItem({commit},payload){
     console.log({err})
   })
 },
+
 deleteCartItem({commit},cartItemId){
   //buraya istek gelecek
   commit("deleteCartItem",cartItemId)
@@ -91,7 +99,7 @@ deleteCartItem({commit},cartItemId){
 
 fetchUserOrder({commit}){
 
-  axios.get('http://localhost:81/user/orders')
+  axios.get('user/orders')
   .then((response) =>{
     console.log({msg:"order fetch is success",data:response.data});
     commit('setUserOrder',response.data)
@@ -107,53 +115,81 @@ const mutations = {
   setCartItems:(state,payload) =>(state.cartItems =payload),
   setOrderInfo:(state,order) =>(state.orderInfos = order),
   addCartItem(state,payload){
-
-    // const isMatch= state.userInfos.product.some(item=>{
-    //   return item.id===payload.id
-    // })
-    // console.log('ismatch (some)',isMatch)
-    // if(!isMatch){
-    //   payload.count=1
-    //   state.userInfos.product.push(payload)
-    // }else{
-    //     console.log("eski product",state.userInfos.product)
-    //    state.userInfos.product.map(item=>{
-    //      if(item.id==payload.id){
-    //        item.count +=1
-    //      }
-    //      return item
-    //    })
-    //    console.log("yeni product",state.userInfos.product)
     const isMatch= state.cartItems.some(item=>{
       return item.id===payload.id
     })
     console.log('ismatch (some)',isMatch)
+    
     if(!isMatch){
-      payload.count=1
+      // payload.count=1
       state.cartItems.push(payload)
     }else{
       console.log("eski product",state.cartItems)
        state.cartItems.map(item=>{
          if(item.id==payload.id){
-           item.count +=1
-         }
+           item.count +=payload.count
+                   }
          return item
        })
        console.log("yeni product",state.cartItems)
        
-      // state.userInfos.product[].count +=1
     }
+         state.userInfos.orderCount++
 
-    state.userInfos.orderCount++
-    state.userInfos.cardTotal += parseInt(payload.price)
+    
+    state.userInfos.cardTotal+=payload.price*payload.count
     console.log('order total typeof',typeof state.userInfos.cardTotal)
     console.log('state verisi',state.userInfos)
   
   },
+  
+increment(state,id){
+  
+  state.products.map(category =>{
+    category.menuItems.some(item =>{
+       
+      if(id==item.id){
+        item.quantity++
+        console.log(item);
+      }
+     
+    }
+     
+     
+        
+      )
+    
+  })
+  
+  
+},
+
+decrement(state,id){
+  
+  state.products.map(category =>{
+    category.menuItems.some(item =>{
+       
+      if(id==item.id){
+       if(item.quantity == 1){
+        swal('Daha Fazla Azaltamazsınız')
+       }
+        else{
+          item.quantity--
+        }
+        
+      }})
+    
+  })
+  
+  
+},
+
+
   setUserOrder:(state,userOrderInfos) =>(state.userOrderInfos = userOrderInfos),
+
   deleteCartItem({state},cartItemId){
-    axios.get("http://localhost:81/user/sepetDel/"+cartItemId) 
-      .then(result=>{
+    axios.get("user/sepetDel/"+ cartItemId)
+    .then(result=>{
         const cartItemIndex=state.cartItems.findIndex(item=>{
           return item.id==cartItemId
         })

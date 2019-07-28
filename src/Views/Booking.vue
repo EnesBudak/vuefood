@@ -47,6 +47,12 @@
                                                 <input type="number" name="attendents" min="1" class="form-control" v-model="booking.attendents" required>
                                             </div>
                                         </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Açuklama </label>
+                                                <textarea type="text" name="message" class="form-control" v-model="booking.message" required> </textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <button class="utility-box-btn btn btn-secondary btn-block btn-lg btn-submit" @click="send_rez" >
@@ -76,39 +82,57 @@ data(){
         phone:'',
         date:'',
         attendents:'',
-        email:''
+        email:'',
+        message:''
         }
     }
 },
 
     methods:{
         send_rez(){
+                    
+            if(this.booking.message != '' && this.booking.email != '' && this.booking.phone != '' && this.booking.name !=''
+                && this.booking.date !='' && this.booking.attendents !=''
+            ){
     axios({
         method: 'post',
-        url: 'http://localhost:81/rezervasyon',
+        url: '/rezervasyon/add',
         data: {
             name: this.booking.name,
             phone : this.booking.phone,
             date : this.booking.date,
             attendents : this.booking.attendents,
-            email : this.booking.email
+            email : this.booking.email,
+            message:this.booking.message
         }
     }).then(obj => {
         console.log(obj.data);
         if(obj.data == "ok"){
-           swal("Biz sizi arayacağız!", "", "success", {
+           swal("Talebiniz Alındı En Kısa Sürede Sizinle İletişime Geçilecektir !", "", "success", {
                 button: "Devam Et!",
                 timer:1500
+      }).then(() =>{
+        this.booking={};
+        window.location.href ='/home'
       })
-       this.booking={}
+       
         }else{
               swal("Hata !", "", "warning", {
                 button: "Devam Et!",
                 timer:1500
-      })
+      });
+      
 
         }
     })
+
+    }else{
+          swal("Lütfen zorunlu alanları doldurunuz", "", "warning", {
+                button: "Devam Et!",
+                timer:1500
+      })
+
+    }
 
         }
 

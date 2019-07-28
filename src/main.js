@@ -3,9 +3,11 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import { routes } from './routes'
 import store from './store/index'
+import './registerServiceWorker'
 
 
 Vue.use(VueRouter)
+
 
 /* eslint-disable no-new */
 export const EventBus = new Vue();

@@ -3,7 +3,8 @@
  <!-- Section - Steps -->
         <section class="section section-extended left bg-light dark">
 
-            <div class="container bg-dark">
+            <div class="bg-dark" style="padding-top: 6rem;
+    padding-bottom: 6rem;padding-left:6rem;">
                 <div class="row">
                     <div class="col-md-4">
                         <!-- Step -->

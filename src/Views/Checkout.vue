@@ -31,34 +31,36 @@
                         </td>
                         <td class="price">{{cartItem.price}} ₺</td>
                         <td class="actions">
-                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                       <!--     <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
+                            -->
+                            <a href="#" class="action-icon" @click="deleteCartItem(cartItem.id)"><i class="ti ti-close"></i></a>
                         </td>
                     </tr>
                    
                  
                 </table>
-                            <div class="cart-summary" >
-                                <div class="row">
-                                    <div class="col-7 text-right text-muted">Sipariş  Toplamı:</div>
-                                    <div class="col-5"><strong>{{userInfos.cardTotal}} ₺</strong></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-7 text-right text-muted">KDV:</div>
-                                    <div class="col-5"><strong>0 ₺</strong></div>
-                                </div>
-                                <hr class="hr-sm">
-                                <div class="row text-md">
-                                    <div class="col-7 text-right text-muted">Toplam:</div>
-                                    <div class="col-5"><strong>
-                                        {{userInfos.cardTotal}} ₺</strong></div>
-                                </div>
-                            </div>
+                                  <div class="cart-summary"  >
+                    <div class="row"  >
+                        <div class="col-7 text-right text-muted">Ara Toplam:</div>
+                        <div class="col-5"><strong>{{parseFloat(userInfos.cardTotal / 1.18).toFixed(2)}} ₺</strong></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 text-right text-muted">KDV:</div>
+                        <div class="col-5"><strong>{{parseFloat(userInfos.cardTotal - (userInfos.cardTotal / 1.18)).toFixed(2)}} ₺</strong></div>
+                    </div>
+                    <hr class="hr-sm">
+                    <div class="row text-lg">
+                        <div class="col-7 text-right text-muted">Toplam:</div>
+                        <div class="col-5"><strong>
+                            {{userInfos.cardTotal}}₺</strong></div>
+                    </div>
+                </div> 
+            
                         </div>
                     </div>
                     <div class="col-xl-8 pull-xl-4 col-lg-7 pull-lg-5">
-                        <div class="bg-white p-4 p-md-5 mb-4">
-                            <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Kişisel Bilgiler</h4>
+                        <div class="bg-white  p-4 p-md-5 mb-4">
+                          <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-dark"></i>Kişisel Bilgiler</h4>
                             <div class="row mb-5">
                                 <!-- Paragraph -->
  
@@ -71,12 +73,17 @@
                         <h4 class="modal-title" id="myModalLabel">Adres Değiştir</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
                     </div>
-                    <div class="modal-body">
-                        Eski Adres:{{userInfos.adress}}
+                    <div class="modal-body ">
+                      
+                        <h4 class="border-bottom pb-4"><i class="ti ti-location-pin mr-3 text-dark"></i><span class="text-primary">Bey mahallesi 16030 sokak no 15 kat 2{{userInfos.adress}} <button type="button" class="btn btn-sm mt-4 btn-outline-success text-success"> Ekle</button></span> </h4>
+                        <div v-if="newAdressAvaible">
+                            <input class="form-control" type="text">
+                        </div>
                     </div>
+                     
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" data-dismiss="modal">Kapat</button>
-                        <button type="button" class="btn btn-primary">Kaydet</button>
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-outline-info">Kaydet</button>
                     </div>
                 </div>
             </div>
@@ -84,15 +91,15 @@
 
 
                         <div class="example-box">
-                            <div class="example-box-title">Adres
+                            <div class="bg-dark dark example-box-title" style="color:white">Adres Bilgileri
                                 <a href="#" data-target="#demoModal" data-toggle="modal"  style="float:right"   class="action-icon "><i class="ti ti-pencil"></i></a>
                            
                             </div>
                             <div class="example-box-content">
-                                <p class="lead">Ad:{{userInfos.firstname}} {{userInfos.lastname}} </p>
-
-                                <p class="lead">Telefon :{{userInfos.phone}} </p>
-                                <p class="lead">Adres :{{userInfos.adress}}  </p>
+                                 <h4 class="border-bottom pb-4"> <i class="ti ti-user mr-3 text-dark"> </i> <span class=" text-primary">Enes Budak{{userInfos.firstname}} {{userInfos.lastname}}</span> </h4>
+                                  <h4 class="border-bottom pb-4"><i class="ti ti-mobile mr-3 text-dark"></i><span class=" text-primary">(543) 529 21 17{{userInfos.phone}}</span></h4>
+                                   <h4 class="border-bottom pb-4"><i class="ti ti-location-pin mr-3 text-dark"></i><span class=" text-primary">Bey mahallesi 16030 sokak no 15 kat 2{{userInfos.adress}}</span><h2></h2></h4>
+                               
                             </div>
                         </div>
 
@@ -106,13 +113,17 @@
                                     <div class="select-container">
                                         <select class="form-control" v-model="order.selected">
                                              <option disabled value="">Lütfen seçiniz </option>
-                                            <option value="0">Mümkünse hızlı olsun</option>
+                                            <option value="0">Hemen (20-30 dakika)</option>
                                             <option value="1">1 Saat içinde </option>
                                             <option value="2">2 Saat içinde</option>
                                             
                                         </select>
                                         
                                     </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label>Not Ekle :</label>
+                                   <textarea class="form-control" name="" id="" cols="30" rows="5" v-model="order.content"></textarea>
                                 </div>
                             </div>
 
@@ -127,14 +138,14 @@
                                 </div>
                                 <div class="col-md-4 col-sm-6 form-group">
                                     <label class="custom-control custom-radio">
-                                        <input type="radio" id="two" name="payment_type" class="custom-control-input" v-model="order.picked" value="1">
+                                        <input type="radio" id="two" name="payment_type" class="custom-control-input" v-model="order.picked" value="2">
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Kredi Kartı </span>
                                     </label>
                                 </div>
                                 <div class="col-md-4 col-sm-6 form-group">
                                     <label class="custom-control custom-radio">
-                                        <input type="radio" id="three" name="payment_type" class="custom-control-input" v-model="order.picked" value="2">
+                                        <input type="radio" id="three" name="payment_type" class="custom-control-input" v-model="order.picked" value="1">
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Nakit</span>
                                     </label>
@@ -165,10 +176,12 @@ import swal from 'sweetalert';
 export default {
     data(){
         return{
+            newAdressAvaible : true,
             order:{
             picked:'',
             selected:'',
             adressChanged:false,
+            content:''
             }
         }
     },
@@ -179,39 +192,25 @@ export default {
 
     async sendOrderDetail(){
         
-   /* axios.post('htpp://localhost:81/user/odeme',this.order)
-    .then((response) =>{
-      console.log(response);
-    console.log(this.order);
-    
-     
-    }) */
             const order=  await this.$store.dispatch('setOrderDetail',this.order);
             console.log("order",order)
   
             try {
 
-                if(!order.message.error && (this.order.picked == 0  || this.order.picked == 2) ){
-                // if(this.order.picked == '0' || this.order.picked == '2'){
-                //     this.$router.push('complete')
-                // }else{
-                //     console.log('hata');
-                    
-                // }
+                if(!order.message.error && (this.order.picked == 0  || this.order.picked == 1) ){
                   swal({
                                 title: "Siparişiniz Verildi!",
                                 text: "",
                                 icon:'success',
-                                button:'Devam Et!'
+                                button:'Devam Et!',
+                                timer:1500
                             
                         }).then( ()  =>{
                     
-                    console.log("çalıştı",order)
+                     console.log("çalıştı",order)
+                     this.$router.push('complete')
                         })
-                  
-                    
-                  
-                    
+                         
                 }else{
                     console.log('hata!')
                 } 
@@ -219,11 +218,13 @@ export default {
             } catch (error) {
                 console.log('istek atılamadı')
             }
-                
-        
-           
-    
-  
+        },
+          deleteCartItem(productId){
+            console.log('silinecek id',productId)
+            this.$store.dispatch('deleteCartItem',productId)
+            .then(() =>{
+                location.reload();
+            })
         }
     },
 

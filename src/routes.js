@@ -7,6 +7,7 @@ import Checkout from './Views/Checkout.vue'
 import Login from './Views/Login.vue'
 import Profile from './Views/Profile.vue'
 import Complete from './Views/Complete.vue'
+import ÜyeOl from './Views/ÜyeOl.vue'
 
 
 export const routes =[
@@ -53,6 +54,11 @@ export const routes =[
       path:'/complete',
       name:'complete',
       component:Complete  
+    },
+    {
+      path:'/uyeol',
+      name:'uyeol',
+      component:ÜyeOl
     },
     {
         path:'*',

@@ -1,188 +1,142 @@
 <template>
     <div>
+        
           <!-- Page Content -->
         <div class="page-content">
             <div class="container">
                 <div class="row no-gutters">
                     <div class="col-md-10 push-md-1" role="tablist">
-                        <div >
-                           
-                        </div>
-                        <!-- Menu Category / Burgers -->
-                        <div id="Burgers" class="menu-category" >
-                            <div class="menu-category-title collapse-toggle" role="tab" data-target="#menuBurgersContent" data-toggle="collapse" aria-expanded="true"      >
-                                <div class="bg-image"><img src="assets/img/photos/menu-title-burgers.jpg" alt=""></div>
-                                <h2 class="title">Burgers</h2>
+                         
+                   
+                       <!-- Menu Category / Burgers -->
+                        <div id="Burgers" class="menu-category" v-for="(product,index) in allProducts" :key="product.id" >
+                     <div  class="menu-category-title collapse-toggle collapsed " role="tab" :data-target="'#'+index" data-toggle="collapse" aria-expanded="true"     
+                              >
+                             
+                            <div> <img class="bg-resim" :src="product.categoryImage" ></div>
+                                <h2 class="title">{{product.name}}</h2>
                                  
                             </div>
-  <div id="menuBurgersContent" class="menu-category-content collapse show ">
+                           
+                     <div :id="[index]" class="menu-category-content collapse  ">
                                 <!-- Menu Item -->
 
-                                <div class="menu-item menu-list-item " v-for="product in products" :key="product.id">
-                                    <div class="row align-items-center ">
+                                <div class="menu-item menu-list-item  " v-for="menuItem in product.menuItems" :key="menuItem.id">
+                                    <div class="row align-items-center " >
                                         <div class="col-sm-6 mb-2 mb-sm-0">
-                                            <h6 class="mb-0"></h6>
-                                            <span class="text-muted text-sm"></span>
+                                            <h6 class="mb-0">{{menuItem.name}}</h6>
+                                            <span class="text-muted text-sm">{{menuItem.description}}</span>
                                         </div>
                                         <div class="col-sm-6 text-sm-right ">
-                                         <span class="text-md mr-4"><span class="text-muted"></span> ₺</span>
-                                      <button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Add to cart</span></button>
+                                         <span class="text-md mr-4"><span class="text-muted"></span>{{menuItem.price}} ₺</span>
+            <button class="btn btn-outline-secondary btn-sm" data-target="#productModal"  @click="addProductToCart(menuItem)"><span>Sepete Ekle</span></button>
+              
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Menu Item -->
-                               
-                              
-                            </div>
-                        </div>
-                        <!-- Menu Category / Pasta -->
-                        <div id="Pasta" class="menu-category">
-                            <div class="menu-category-title collapse-toggle" role="tab" data-target="#menuPastaContent" data-toggle="collapse" aria-expanded="false">
-                                <div class="bg-image"><img src="assets/img/photos/menu-title-pasta.jpg" alt=""></div>
-                                <h2 class="title">Pasta</h2>
-                            </div>
-                            <div id="menuPastaContent" class="menu-category-content collapse">
-                                <!-- Menu Item -->
-                                <div class="menu-item menu-list-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-sm-6 mb-2 mb-sm-0">
-                                            <h6 class="mb-0">Beef Burger</h6>
-                                            <span class="text-muted text-sm">Beef, cheese, potato, onion, fries</span>
-                                        </div>
-                                        <div class="col-sm-6 text-sm-right">
-                                            <span class="text-md mr-4"><span class="text-muted">from</span> $9.00</span>
-                                            <button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Add to cart</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                              
-                           
-                            </div>
-                        </div>
-                        <!-- Menu Category / Pizza -->
-                        <div id="Pizza" class="menu-category">
-                            <div class="menu-category-title collapse-toggle" role="tab" data-target="#menuPizzaContent" data-toggle="collapse" aria-expanded="false">
-                                <div class="bg-image"><img src="assets/img/photos/menu-title-pizza.jpg" alt=""></div>
-                                <h2 class="title">Pizza</h2>
-                            </div>
-                            <div id="menuPizzaContent" class="menu-category-content collapse">
-                                <!-- Menu Item -->
-                                <div class="menu-item menu-list-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-sm-6 mb-2 mb-sm-0">
-                                            <h6 class="mb-0">Beef Burger</h6>
-                                            <span class="text-muted text-sm">Beef, cheese, potato, onion, fries</span>
-                                        </div>
-                                        <div class="col-sm-6 text-sm-right">
-                                            <span class="text-md mr-4"><span class="text-muted">from</span> $9.00</span>
-                                            <button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Add to cart</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                              
-                            </div>
-                        </div>
-                        <!-- Menu Category / Sushi -->
-                        <div id="Sushi" class="menu-category">
-                            <div class="menu-category-title collapse-toggle" role="tab" data-target="#menuSushiContent" data-toggle="collapse" aria-expanded="false">
-                                <div class="bg-image"><img src="assets/img/photos/menu-title-sushi.jpg" alt=""></div>
-                                <h2 class="title">Sushi</h2>
-                            </div>
-                            <div id="menuSushiContent" class="menu-category-content collapse">
-                                <!-- Menu Item -->
-                                <div class="menu-item menu-list-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-sm-6 mb-2 mb-sm-0">
-                                            <h6 class="mb-0">Beef Burger</h6>
-                                            <span class="text-muted text-sm">Beef, cheese, potato, onion, fries</span>
-                                        </div>
-                                        <div class="col-sm-6 text-sm-right">
-                                            <span class="text-md mr-4"><span class="text-muted">from</span> $9.00</span>
-                                            <button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Add to cart</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                              
-                            </div>
-                        </div>
-                        <!-- Menu Category / Desserts -->
-                        <div id="Desserts" class="menu-category">
-                            <div class="menu-category-title collapse-toggle" role="tab" data-target="#menuDessertsContent" data-toggle="collapse" aria-expanded="false">
-                                <div class="bg-image"><img src="assets/img/photos/menu-title-desserts.jpg" alt=""></div>
-                                <h2 class="title">Desserts</h2>
-                            </div>
-                            <div id="menuDessertsContent" class="menu-category-content collapse">
-                                <!-- Menu Item -->
-                                <div class="menu-item menu-list-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-sm-6 mb-2 mb-sm-0">
-                                            <h6 class="mb-0">Beef Burger</h6>
-                                            <span class="text-muted text-sm">Beef, cheese, potato, onion, fries</span>
-                                        </div>
-                                        <div class="col-sm-6 text-sm-right">
-                                            <span class="text-md mr-4"><span class="text-muted">from</span> $9.00</span>
-                                            <button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Add to cart</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                               
                              
                             </div>
+                            
                         </div>
-                        <!-- Menu Category / Drinks -->
-                        <div id="Drinks" class="menu-category">
-                            <div class="menu-category-title collapse-toggle" role="tab" data-target="#menuDrinksContent" data-toggle="collapse" aria-expanded="false">
-                                <div class="bg-image"><img src="assets/img/photos/menu-title-drinks.jpg" alt=""></div>
-                                <h2 class="title">Drinks</h2>
-                            </div>
-                            <div id="menuDrinksContent" class="menu-category-content collapse">
-                                <!-- Menu Item -->
-                                <div class="menu-item menu-list-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-sm-6 mb-2 mb-sm-0">
-                                            <h6 class="mb-0">Beef Burger</h6>
-                                            <span class="text-muted text-sm">Beef, cheese, potato, onion, fries</span>
-                                        </div>
-                                        <div class="col-sm-6 text-sm-right">
-                                            <span class="text-md mr-4"><span class="text-muted">from</span> $9.00</span>
-                                            <button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Add to cart</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                               
-                            </div>
-                        </div>
+                       
+                       
+                     
                     </div>
                 </div>
             </div>
         </div>
+        
+
+    <!-- Body Overlay -->
+    <div id="body-overlay"></div>
     </div>
 </template>
 
 
 <script>
+import {mapGetters,mapActions} from 'vuex'
+import axios from 'axios'
+import swal from 'sweetalert';
+
 
 export default {
-    
-    data(){
-        return {
-        products:[]
-        
-        }
-    },
-    
-    created(){
-        fetch('https://api.myjson.com/bins/1gzn20')
-        .then((res) => { return res.json() })
-        .then((res) => {
-        this.products = res.categorys;
-       console.log(this.products);
-       
-        })
+   
+data(){
+    return{
+        itemName:'enes',
+        counter:1,
     }
+},
+
+    
+    computed:mapGetters(['allProducts','userInfos']),
+  
+     methods: {
+      ...mapActions(['fetchProducts']),
+      
+      //...mapActions('cart',['addProductToCart']),
+
+     //  addProductToCart(menuItem){ 
+     //  }
+    addProductToCart(menuItem){
+
+
+        // axios.post('http://aysoftdemo.site/user/sepet',menuItem.id)
+        // .then( (response) =>{
+        //     console.log(response);
+        // })
+        this.$store.dispatch("addCartItem",menuItem)
+        
+        
+       if(this.userInfos.firstname != undefined) {
+          swal({
+                title: "Sepete Eklendi!",
+                text: menuItem.name,
+                icon:'success',
+                button:'Devam Et!',
+                timer:1000,
+            
+          });
+       }else{
+           swal({
+               title:'Lütfen Giriş Yapın',
+               icon:'error'
+           })
+       }
+    },
+  
+    },
+
+
+        created(){
+    
+         this.fetchProducts();
+    
+         //this.fetchCartItems();
+
+         
+   
+  
+    
+        }
+   
+
+
 }
 </script>
+<style >
+ .bg-resim{
+     
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 0;
+
+ }   
+</style>
