@@ -1,9 +1,6 @@
 <template>
     <div>
-         
-
-     <appAbout/>
-    
+        <appAbout/>
     </div>
 </template>
 <script>

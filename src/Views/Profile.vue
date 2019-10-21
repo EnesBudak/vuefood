@@ -9,6 +9,9 @@
 <ul class="nav nav-pills nav-fill mb-3" role="tablist">
     <li class="nav-item"><a class="nav-link active" href="#profile" aria-controls="home" role="tab" data-toggle="tab">Profil</a></li>
         <li class="nav-item"><a class="nav-link" href="#kargotakip" aria-controls="profile" role="tab" data-toggle="tab">Sipariş Takip</a></li>
+        <li class="nav-item"><a class="nav-link" href="#edit"   aria-controls="profile" role="tab" data-toggle="tab">Profil  Düzenleme</a></li>
+        <li class="nav-item"><a class="nav-link" href="#adressEdit" aria-controls="profile" role="tab" data-toggle="tab">Adres  Düzenleme</a></li>
+        <li class="nav-item"><a class="nav-link" href="#passwordEdit" aria-controls="profile" role="tab" data-toggle="tab">Şifre  Düzenleme</a></li>
   <!--  <li class="nav-item"><a class="nav-link" href="#edit" aria-controls="messages" role="tab" data-toggle="tab">Düzenleme</a></li> -->
 </ul>
 
@@ -16,51 +19,42 @@
                 <div class="tab-pane active" id="profile">
                 
                     <div class="row">
-        <div class="col-8">
-            <div class="card">
-                <div class="card-body">
+        <div class="col-12 ">
+            <div class="card ">
+                <div class="card-body border--primary">
                     <div class="row">
-                        <div class="col-12 col-lg-8 col-md-6">
-                            <h3 class="mb-0 text-truncated">{{userInfos.firstname}} {{userInfos.lastname}}</h3>
-                            <p class="lead">{{userInfos.phone}}</p>
-                            <p>
-                              {{userInfos.adress}}
+                        <div class="col-lg-8 ">
+                           <h3 class="mt-3 text-truncated" style="color:222;font-weight:500;font-size:23px;"><i class="ti ti-user icon icon-primary"></i>{{userInfos.firstname}} {{userInfos.lastname}}</h3>
+                            <p class="name" style="color:222;font-weight:500;font-size:23px;"> <i class="ti ti-mobile icon icon-primary"> </i>{{userInfos.phone}}</p>
+                            <p class="text-truncated " style="color:222;font-weight:500;font-size:23px;">
+                            <i class="ti ti-location-pin icon icon-primary"> </i>
+                         {{userInfos.adress}} 
                             </p>
-                            <p class="lead">{{userInfos.email}}</p>
+                            <p class="lead" style="color:222;font-weight:500;font-size:23px;"> <i class="ti ti-bookmark icon icon-primary">  </i>{{userInfos.email}}</p>
                         </div>
                         <div class="col-12 col-lg-4 col-md-6 text-center">
-                            <img src="http://www.ay-soft.com/images/logo.png" alt="" class="mx-auto rounded-circle img-fluid">
+                            <img :src="'https://ui-avatars.com/api/?size=200&name='+userInfos.firstname+'+'+userInfos.lastname" alt=""   class="mx-auto rounded-circle img-fluid mt-5">
+                           
                             <br>
-                            <ul class="list-inline ratings text-center" title="Ratings">
-                                <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                                </li>
-                                <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                                </li>
-                                <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                                </li>
-                                <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                                </li>
-                                <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
-                                </li>
-                            </ul>
+                          
                         </div>
-                         <!--
+                        
                         <div class="col-12 col-lg-4">
                             <h3 class="mb-0">20</h3>
-                            <small>Sipariş Sayısı</small>
+                            <small class="text-primary">Sipariş Sayısı</small>
                             
                         </div>
                         <div class="col-12 col-lg-4">
                             <h3 class="mb-0">0</h3>
-                            <small>İptal Olan Siparişler</small>
+                            <small class="text-primary">İptal Olan Siparişler</small>
                            
                         </div>
                         <div class="col-12 col-lg-4">
                             <h3 class="mb-0">1</h3>
-                            <small>Devam Etmekte Olan Siparişler</small>
+                            <small class="text-primary">Devam Etmekte Olan Siparişler</small>
                            
                         </div>
-                        /col-->
+                       
                         
                     </div>
                     <!--/row-->
@@ -71,7 +65,7 @@
     </div>
                     <!--/row-->
                 </div>
-                <div class="tab-pane" id="kargotakip">
+                <div class="tab-pane border--primary" id="kargotakip">
                     <h4 class="m-y-2">Sipariş Takip</h4>
                     
                    <table class="table ">
@@ -113,28 +107,60 @@
                             <div class="row mb-5">
                                 <div class="form-group col-sm-8">
                                     <label>Ad</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" @change="changeFirstName" class="form-control" v-model="userInfos.firstname">
                                 </div>
                                 <div class="form-group col-sm-8">
                                     <label>Soyad</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" @change="changeLastName" v-model="userInfos.lastname"  >
                                 </div>
-                                <div class="form-group col-sm-8">
-                                    <label>Adres</label>
-                                    <textarea type="text" class="form-control"> </textarea>
-                                </div>
+                               
                                 
                                 <div class="form-group col-sm-8">
                                     <label>Telefon</label>
-                                    <input type="number" class="form-control">
+                                    <input type="number" class="form-control" @change="changePhone" v-model="userInfos.phone" >
                                 </div>
                                 <div class="form-group col-sm-8">
                                     <label>E-posta </label>
-                                    <input type="email" class="form-control">
+                                    <input type="email" class="form-control" @change="changeMail" v-model="userInfos.email" >
                                 </div>
-                                   <div class="text-center">
-                            <button class="btn btn-dark btn"><span>İptal</span></button>
-                            <button class="btn btn-primary btn"><span>Değişiklikleri Kaydet</span></button>
+                                   <div class="form-group col-md-8">
+                           
+                            <button class="btn btn-primary " @click="sendNewInfo">Değişiklikleri Kaydet</button>
+                        </div>
+                            </div>
+
+
+                          
+                               
+                            </div>
+       
+                            
+                    
+                </div>
+
+                  <div class="tab-pane" id="passwordEdit">
+                      
+                <div class="bg-white col-8">
+                            <h4 class=" pb-4"><i class="ti ti-user mr-3 text-primary"></i>Kişisel Bilgiler</h4>
+                            <div class="row mb-5">
+                                <div class="form-group col-sm-8">
+                                    <label>Eski Şifreniz</label>
+                                    <input type="password" class="form-control" v-model="oldPassword">
+                                </div>
+                                 <div class="form-group col-sm-8">
+                                    <label>Yeni Şifreniz</label>
+                                    <input type="password" class="form-control" v-model="newPassword" >
+                                </div>
+                                 <div class="form-group col-sm-8">
+                                    <label>Yeni Şifreniz Tekrar</label>
+                                    <input type="password" class="form-control" v-model="newPassword2" >
+                                </div>
+                              
+                                
+                                
+                                   <div class="form-group col-md-8">
+                           
+                            <button class="btn btn-primary " @click="sendNewPassword">Değişiklikleri Kaydet</button>
                         </div>
                             </div>
 
@@ -159,18 +185,101 @@
 
 
 import { mapGetters, mapActions } from 'vuex';
+import axios from 'axios'
+import swal from 'sweetalert';
+
 
 
 export default {
-    methods:{
-         ...mapActions(['fetchUserInfo','fetchUserOrder'])
+    data(){
+        return {
+        
+            oldPassword:null,
+            newPassword:null,
+            newPassword2:null,
+            firstname:"",
+            lastname:"",
+            phone:"",
+            email:"",
+         
     
+
+      url:"https://ui-avatars.com/api/?name=`{userInfos.firstname +userInfos.lastname}`"
+        }
+    },
+   
+    methods:{
+        
+         ...mapActions(['fetchUserInfo','fetchUserOrder']),
+         
+         sendNewPassword(){
+             const url = "user/update";
+             if(this.newPassword === this.newPassword2 && this.oldPassword !=""){
+                 axios.post(url,{newPassword:this.newPassword,oldPassword:this.oldPassword}).then((obj) =>{
+                 swal("Şifre Başarıyla Değiştirildi !", "", "success", {
+                button: "Devam Et!",
+                timer:1500
+      }).then(() =>{
+          location.reload();
+      });
+                 })
+             }
+
+         },
+
+
+
+         sendNewInfo(){
+            
+            const url = "user/update";
+            
+          axios.post(url,{firstname:this.firstname,lastname:this.lastname,phone:this.phone,email:this.email}).then((obj) =>{
+
+               swal("Bilgiler Başarıyla Değiştirildi !", "", "success", {
+                button: "Devam Et!",
+                timer:1500
+      }).then(() =>{
+          location.reload();
+      });
+
+          })
+           
+            
+ 
+         },
+         changeFirstName(e){
+            console.log(e.target.value);
+            this.firstname = e.target.value
+             
+         },
+         changeLastName(e){
+            console.log(e.target.value);
+            this.lastname = e.target.value
+             
+         },
+         changePhone(e){
+            console.log(e.target.value);
+            this.phone = e.target.value
+             
+         },
+         changeMail(e){
+            console.log(e.target.value);
+            this.email = e.target.value
+             
+         }
+        
 
     },
     computed:mapGetters(['userInfos','userOrderInfos']),
     created(){
-            this.fetchUserInfo();
+           
+            
+         this.fetchUserInfo();
+
+          
+            
             this.fetchUserOrder();
+          
     }
 
     

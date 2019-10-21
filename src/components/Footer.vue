@@ -7,48 +7,47 @@
             <div class="container">
                 <!-- Footer 1st Row -->
                 <div class="footer-first-row row">
-                    <div class="col-lg-3 text-center">
+                    <!-- <div class="col-lg-3 text-center">
                         <a href="index.html"><img src="assets/img/logo-zekiusta.png" alt="" width="150" class="mt-5 mb-5"></a>
-                    </div>
-                    <div class="col-lg-2 col-md-3">
-                  
-                  
-                     <ul class="nav nav-main mt-5">
-                              <router-link to="/contact" tag="a">
-                        <li  class="nav-item text-primary">
-                           iletişim
-                        </li>
-                                 </router-link>
-                    </ul>
-                    <ul class="nav nav-main mt-5">
-                              <router-link to="/booking" tag="a">
-                        <li  class="nav-item text-primary">
-                           Rezervasyon
-                        </li>
-                                 </router-link>
-                    </ul>
-                    </div>
-                     <div class="col-lg-2 col-md-3">
-                    <ul class="nav nav-main mt-5">
-                       
-                            <router-link to="/about" tag="a">
-                        <li  class="nav-item text-primary">
-                            Hakkımızda
-                        </li>
-                                 </router-link>
-                            
-                                 
-                        
-                    </ul>
-                    <ul class="nav nav-main mt-5">
-                              <router-link to="/product" tag="a">
-                        <li  class="nav-item text-primary">
-                            Menu
-                        </li>
-                                 </router-link>
-                    </ul>
-                   
-                  
+                    </div> -->
+                    <div class="col-lg-7 col-md-6">
+                        <div>
+                            <ul class="nav nav-main " style="display:flex;flex-wrap:wrap;">
+                                <li  class="nav-item text-primary">
+                                    <router-link to="/contact" tag="a">
+                                        iletişim
+                                    </router-link>
+                                </li>
+                                <li  class="nav-item text-primary">
+                                    <router-link to="/hizmetler" tag="a">
+                                        Hizmetler
+                                    </router-link>
+                                </li>
+                                <li  class="nav-item text-primary">
+                                    <router-link to="/booking" tag="a">
+                                        Rezervasyon
+                                    </router-link>
+                                </li>
+                                    <li  class="nav-item text-primary">
+                                    <router-link to="/about" tag="a">
+                                        Hakkımızda
+                                    </router-link>
+                                </li>
+                                <li  class="nav-item text-primary">
+                                    <router-link to="/product" tag="a">
+                                        Menu
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </div>
+                       <div class="mt-4 mb-4">
+                            <!-- <h5 class="text-muted mb-3">Sosyal Medya</h5> -->
+                            <a href="#" class="icon icon-social icon-circle icon-md icon-facebook mr-2"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="icon icon-social icon-circle icon-md icon-google mr-2"><i class="fa fa-google"></i></a>
+                            <a href="#" class="icon icon-social icon-circle icon-md icon-twitter mr-2"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="icon icon-social icon-circle icon-md icon-youtube mr-2"><i class="fa fa-youtube"></i></a>
+                            <a href="#" class="icon icon-social icon-circle icon-md icon-instagram"><i class="fa fa-instagram"></i></a>
+                        </div>
                     </div>
                    
                     <div class="col-lg-5 col-md-6">
@@ -68,13 +67,15 @@
                                 </span>
                             </div>
                         </form>
-                        <h5 class="text-muted mb-3">Sosyal Medya</h5>
-                        <a href="#" class="icon icon-social icon-circle icon-sm icon-facebook"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="icon icon-social icon-circle icon-sm icon-google"><i class="fa fa-google"></i></a>
-                        <a href="#" class="icon icon-social icon-circle icon-sm icon-twitter"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="fa fa-youtube"></i></a>
-                        <a href="#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="fa fa-instagram"></i></a>
+                      
                     </div>
+
+                       <!-- <div class="col-lg-5 col-md-6">
+                        <h5 class="text-muted">Abone Ol!</h5>
+                   <a class="btn btn-primary" href="tel://+903222352302">ARA</a>
+                        
+                    </div> -->
+                    
                 </div>
                 <!-- Footer 2nd Row -->
                 <div class="footer-second-row">

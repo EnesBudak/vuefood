@@ -1,158 +1,123 @@
 <template>
-<div >
-  <header id="header" class="light">
-
-        <div class="container">
-            
-            <div class="row">
-                <div class="col-md-9  push-md-2 text-center">
-                    <!-- Navigation -->
-                    <nav class="module module-navigation mr-4">
-                        <ul id="nav-main" class="nav nav-main">
-                            
-             <li class="nav-item" >
-                 <router-link to="/home" class="has-dropdown">
-                  <img src="assets/img/logo-zekiusta.png" alt=""  class="mr-5">
-                  </router-link>
-            
-            </li>
-             <!-- 
-             <li class="nav-item">
-              <router-link to="/about" class="has-dropdown">Hakkımızda</router-link>
-            </li>
-                           
-                            <li class="nav-item">
-              <router-link to="/product" class="has-dropdown">Menü</router-link>
-            </li>
-                           <li><a href="page-offers.html">İndİrİmler</a></li>
-                           
-                            
-                            
-                            <li class="nav-item">
-              <router-link to="/contact" class="has-dropdown">İletİşİm</router-link>
-                  </li>
-               -->
-               <li>
-            <router-link to="/product" class="has-dropdown">
-            <div class="feature-icon icon icon-primary" style="font-size:30px"><i class="ti ti-shopping-cart"></i></div>Menü</router-link>
-        
-            </li>
-                                       <li class="nav-item">
-              <router-link to="/booking" class="has-dropdown">
-           <div class="feature-icon icon icon-primary" style="font-size:25px"><i class="ti ti-bookmark-alt"></i></div>   Rezervasyon</router-link>
-            </li> 
-             <li class="nav-item">
-              <router-link v-if="userInfos.firstname != undefined " to="/profile" class="has-dropdown">
-              <div class="feature-icon icon icon-primary" style="font-size:25px"><i class="ti ti-user"></i></div>Profil
-             </router-link>
-            </li>
-                                           
-                           <li v-if="userInfos.firstname != undefined "  class="nav-item">
-                        <a  href="user/logout" >
-                                   
-                        <div class="feature-icon icon icon-primary" style="font-size:25px"><i class="ti ti-export"></i></div>
-                      Çıkış Yap
-                                                          
-                       </a>
-                    </li>
-                      <li v-else  class="nav-item">
-                        <a  href="/login" >
-                           <div class="feature-icon icon icon-primary" style="font-size:25px"><i class="ti ti-export"></i></div>
-                            Giriş yap 
-                                                            
-                       </a>
-                    </li>
-                        </ul>
-                    </nav>
-                    <!--
-                    <div class="module ">
-                       
-                        <router-link to="/product" class="btn btn-outline-primaryn"><span>Sİparİş Ver</span></router-link>
+<div style="width:100%;display:block;height:100%;">
+    <header id="header" class="light" >
+        <div class="header-container">
+            <div class="header-grid">
+                <div class="header-left">
+                    <div class="header-item logo">
+                        <router-link to="/" class="header-item--link">
+                            <img  width="100%" height="100%" src="http://cdn.yemeksepeti.com/CategoryImages/TR_ADANA/zeki_usta_kebap_big.gif" alt="">
+                        </router-link>
                     </div>
-                   -->
-                                
-                                </div>
-      
-
-                <div class="col-md-2 push-md-2" >
-                 
-                        <a @click="showPanel()" href="#" class="module module-cart right" data-toggle="panel-cart">
-                        <span class="cart-icon">
-                            <i class="ti ti-shopping-cart"></i>
-                            <span class="notification">{{userInfos.orderCount}}</span>
-                        </span>
-                        <span class="cart-value">{{userInfos.cardTotal}} ₺</span>
-                    </a>
-
-    
                 </div>
-            
+                <div id="header-items--content" :class="[(isActiveMenu) ? 'active' : 'disable']" style="padding-left:15px;" class="header-items">
+                    <div class="header-item">
+                        <router-link to="/" class="header-item--link">
+                            <div class="feature-icon icon icon-primary" style="font-size:23px">
+                                <i class="ti ti-home"></i>
+                            </div>
+                            <div>Ana sayfa</div>
+                        </router-link>
+                    </div>
+                    <div class="header-item">
+                        <router-link to="/product" class="header-item--link">
+                            <div class="feature-icon icon icon-primary" style="font-size:23px">
+                                <i class="ti ti-shopping-cart"></i>
+                            </div>
+                            <div>Menü</div>
+                        </router-link>
+                    </div>
+                    <div class="header-item">
+                        <router-link to="/booking" class="header-item--link">
+                            <div class="feature-icon icon icon-primary" style="font-size:23px">
+                                <i class="ti ti-bookmark-alt"></i>
+                            </div>
+                            <div>Rezervasyon</div>
+                        </router-link>
+                    </div>
 
-               
-
-                
+                    <template  v-if="userInfos.cardTotal !== undefined ">
+                        <div class="header-item">
+                            <a href="/profile" class="header-item--link">
+                                <div class="feature-icon icon icon-primary" style="font-size:23px">
+                                    <i class="ti ti-user"></i>
+                                </div>
+                                <div>Profil</div>
+                            </a>
+                        </div>
+                        <div class="header-item">
+                            <a href="user/logout" class="header-item--link">
+                                <div class="feature-icon icon icon-primary" style="font-size:23px">
+                                    <i class="ti ti-export"></i>
+                                </div>
+                                <div>Çıkış Yap</div>
+                            </a>
+                        </div>
+                    </template>
+                    <div class="header-item" v-else-if="userInfos.cardTotal === undefined">
+                        <a href="/login" class="header-item--link">
+                            <div class="feature-icon icon icon-primary" style="font-size:22px">
+                                <i class="ti ti-user"></i>
+                            </div>
+                            <div>Giriş yap</div>
+                        </a>
+                    </div>
+                          
+                </div>
+                <div class="header-sepet-icon">
+                    <div class="header-item">
+                        <div v-if="userInfos.cardTotal !== undefined">
+                            <a @click="showPanel()" href="#" class="module module-cart right" data-toggle="panel-cart">
+                                <span class="cart-icon">
+                                    <i class="ti ti-shopping-cart"></i>
+                                    <span class="notification">{{userInfos.orderCount}}</span>
+                                </span>
+                                <span class="cart-value">{{userInfos.cardTotal}} ₺</span>
+                            </a>
+                        </div>
+                        <div  v-else>
+                            <a @click="showPanel()" href="#" class="module module-cart right" data-toggle="panel-cart">
+                                <span class="cart-icon">
+                                    <i class="ti ti-shopping-cart"></i>
+                                    <span class="notification">0</span>
+                                </span>
+                                <span class="cart-value">0 ₺</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="mobile-button" class="header-item" style="padding-left:20px;">
+                        <div class="mobile-btn" @click="isActiveMenu=!isActiveMenu">
+                            <div id="nav-icon1" :class="[isActiveMenu==true ? 'open' : '']">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </header>
     <!-- Header / End -->
-
-    <!-- Header -->
-    <header  id="header-mobile" class="dark" >
-
-        <div class="module module-nav-toggle">
-            
-            <a @click="showMobileMenu = !showMobileMenu"   href="#"  id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
-        </div>    
-
-       
-    
-        <a @click="showPanel()" href="#" class="module module-cart"  data-toggle="panel-cart">
-            <i class="ti ti-shopping-cart"></i>
-            <span class="notification">{{userInfos.orderCount}}</span>
-        </a>
-
-    </header>
-    <!-- Header / End -->
-          <!-- Panel Mobile -->
-    <nav id="panel-mobile" @click="showMobileMenu = !showMobileMenu" :class="{show:showMobileMenu}" >
-        <div class="module module-logo bg-dark dark">
-            <a href="#">
-                <img src="assets/img/logo-zekiusta.png" alt="" width="88">
-            </a>
-            <button class="close" data-toggle="panel-mobile"><i class="ti ti-close"></i></button>
-        </div>
-        <nav class="module module-navigation"></nav>
-        <div class="module module-social">
-            <h6 class="text-sm mb-3">Bizi Takip  Edin!</h6>
-            <a href="#" class="icon icon-social icon-circle icon-sm icon-facebook"><i class="fa fa-facebook"></i></a>
-           
-            <a href="#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="fa fa-instagram"></i></a>
-        </div>
-    </nav>
-
-  <!-- Content -->
+    <!-- Content -->
     <div id="content">
-
-
        <div id="body-overlay"></div>
-
     </div>
-   
-
 </div>
 </template>
 <script>
 
 import {EventBus} from './../main.js'
 import { mapGetters, mapActions } from 'vuex';
-
+import Sticky from 'vue-sticky-directive'
 export default {
    
+  directives: {Sticky},
    data () {
       return {
            menuShow :false,
            showMobileMenu:false,
+           isActiveMenu:false
       }
          
        
@@ -172,9 +137,9 @@ export default {
    computed:mapGetters(['userInfos']),
 
    created(){
-    //    this.fetchUserInfo();
-    this.$store.dispatch('fetchUserInfo')
-    // console.log(this.userInfos);
+        //    this.fetchUserInfo();
+        this.$store.dispatch('fetchUserInfo')
+        // console.log(this.userInfos);
    }
         
    
@@ -182,7 +147,10 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style >
-
-
+<style lang="scss">
+.logo {
+    .header-item--link {
+        color: #ddae71;
+    }
+}
 </style>

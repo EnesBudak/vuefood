@@ -3,12 +3,12 @@
  <!-- Section - Steps -->
         <section class="section section-extended left bg-light dark">
 
-            <div class="bg-dark" style="padding-top: 6rem;
-    padding-bottom: 6rem;padding-left:6rem;">
+            <div class="bg-dark" style="padding-top: 4.5rem;
+    padding-bottom: 4.5rem;padding-left:6rem;">
                 <div class="row">
                     <div class="col-md-4">
                         <!-- Step -->
-                        <div class="feature feature-1 mb-md-0 animated" data-animation="fadeIn">
+                        <div class="feature feature-1 mb-md-0" data-animation="fadeIn">
                             <div class="feature-icon icon icon-primary"><i class="ti ti-shopping-cart"></i></div>
                             <div class="feature-content">
                                 <h4 class="mb-2"><router-link tag="a" to="/product">Yemeği Seç</router-link></h4>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-md-4">
                         <!-- Step -->
-                        <div class="feature feature-1 mb-md-0 animated " data-animation="fadeIn" data-animation-delay="300">
+                        <div class="feature feature-1 mb-md-0  " data-animation="fadeIn" data-animation-delay="300">
                             <div class="feature-icon icon icon-primary"><i class="ti ti-wallet"></i></div>
                             <div class="feature-content">
                                 <h4 class="mb-2">Ödeme Yap</h4>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-md-4">
                         <!-- Step -->
-                        <div class="feature feature-1 mb-md-0 animated" data-animation="fadeIn" data-animation-delay="600">
+                        <div class="feature feature-1 mb-md-0 " data-animation="fadeIn" data-animation-delay="600">
                             <div class="feature-icon icon icon-primary"><i class="ti ti-package"></i></div>
                             <div class="feature-content">
                                 <h4 class="mb-2">Yiyeceğini Al!</h4>

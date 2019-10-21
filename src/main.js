@@ -5,8 +5,13 @@ import { routes } from './routes'
 import store from './store/index'
 import './registerServiceWorker'
 
+import Sticky from 'vue-sticky-directive'
+
+Vue.use(Sticky)
+
 
 Vue.use(VueRouter)
+
 
 
 /* eslint-disable no-new */
@@ -16,7 +21,6 @@ Vue.config.productionTip = false
 
 const router = new VueRouter({
   routes,
-
   mode:'history'
 })
 

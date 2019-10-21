@@ -251,7 +251,7 @@ export default {
         
             
         console.log(response);
-        if(response.data.status == 'created'){
+        if(response.data.status == 'registered'){
           //this.$router.go(this.$router.currentRoute)
                 swal({
           title: "Kayıt Olundu!",
@@ -268,7 +268,27 @@ export default {
         })
 
        
-        }else{
+        }
+           else if(response.data.status == 'emailfailed'){
+          //this.$router.go(this.$router.currentRoute)
+                swal({
+          title: "E-posta Zaten Kayıtlı!",
+          text: "Farklı E-posta Deneyiniz!",
+          icon: "warning",
+          timer:1500
+        })
+  
+        } else if(response.data.status == 'erroneousData'){
+          //this.$router.go(this.$router.currentRoute)
+                swal({
+          title: "Hatalı Veri!",
+          text: "Bilgileri Kontrol Ediniz!",
+          icon: "warning",
+          timer:1500
+        })
+  
+        }
+        else{
               swal({
           title: "Lütfen bilgileri kontrol ediniz !",
       

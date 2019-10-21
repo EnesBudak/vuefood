@@ -1,87 +1,74 @@
 <template>
-    <div style="overflow-x:hidden">
-        
-        <!-- Section - Menu -->
-        <section class="section cover protrude pull-up-20">
+<!-- 
+    <div class="food-slider--container inner-controls carousel carousel-items " data-slick='{
+        "slidesToShow": 6, 
+        "slidesToScroll": 2,
+        "dots": false,
+        "arrows": true,
+        "responsive": [
+            {
+                "breakpoint": 991,
+                "settings": {
+                    "slidesToShow": 3
+                }
+            },
+            {
+                "breakpoint": 575,
+                "settings": {
+                    "slidesToShow": 3
 
-            <div class="menu-sample-carousel carousel inner-controls" data-slick='{
-                "dots": true,
-                "slidesToShow": 3,
-                "slidesToScroll": 1,
-                "infinite": true,
-                "responsive": [
-                    {
-                        "breakpoint": 991,
-                        "settings": {
-                            "slidesToShow": 2,
-                            "slidesToScroll": 1
-                        }
-                    },
-                    {
-                        "breakpoint": 690,
-                        "settings": {
-                            "slidesToShow": 1,
-                            "slidesToScroll": 1
-                        }
-                    }
-                ]
-            }'>
-                <!-- Menu Sample -->
-                <div class="menu-sample">
-                   <router-link tag='a' to='/product'> 
-                   <img src="assets/img/photos/kebabcat.jpg" alt="" class="image">
-                        <h3 class="title">Kebaplar</h3>
-                        </router-link>
+                }
+            }
+        ]
+        }'
+    >    
+        <div class="carousel-item " v-for="(item,index) in allProducts" :key="index">
+            <router-link tag='a' :to='`/product?${index}`' >
+                <img :src="item.categoryImage" alt="" class="kare">
+                <h3 class="title  text-secondary text-center ">
+                    {{item.name}}
+                </h3>
+            </router-link>
+        </div>
+    </div> -->
+     <div class="menu-categories" style="width:100%;background:#fff;">
+        <div class="menu-categories--container">
+            <div 
+                @click="$router.push(`/product?${catIndex}`)"
+                class="menu-categories--item"
+                v-for="(product,catIndex) in allProducts" :key="product.id" 
+            >
+                <div class="menu-categories--item-img">
+                    <img :src="product.categoryImage" alt="">
                 </div>
-                <!-- Menu Sample -->
-                <div class="menu-sample">
-                  
-                        <router-link tag='a' to='/product'>
-                        
-                        <img src="assets/img/photos/izgaracat.jpg" alt="" class="image">
-                        <h3 class="title">Izgaralar</h3>>
-                        </router-link>
-                  
-                </div>
-                <!-- Menu Sample -->
-                <div class="menu-sample">
-                   
-                        <router-link tag='a' to='/product'>
-                        <img src="assets/img/photos/köftecat.jpg" alt="" class="image">
-                        <h3 class="title">Çiğköfte</h3>        
-                     </router-link>
-                   
-                </div>
-                <!-- Menu Sample -->
-                <div class="menu-sample">
-                    
-                       <router-link tag='a' to='/product' >
-                            <img src="assets/img/photos/dürümcat.jpg" alt="" class="image">
-                        <h3 class="title">Dürümler</h3>
-                       </router-link>
-                   
-                </div>
-                <!-- Menu Sample -->
-                <div class="menu-sample">
-                   
-                        <router-link tag='a' to='/product' >
-                            <img src="assets/img/photos/menu-sample-dessert.jpg" alt="" class="image">
-                        <h3 class="title">Tatlılar</h3>
-                        </router-link>
-                    
-                </div>
-                <!-- Menu Sample -->
-                <div class="menu-sample">
-                   
-                       <router-link tag='a' to='/product' >
-                            <img src="assets/img/photos/menu-sample-drinks.jpg" alt="" class="image">
-                        <h3 class="title">İçecekler</h3>
-                       </router-link>
-                    
+                <div class="menu-categories--item-text">
+                    {{product.name}}
                 </div>
             </div>
-
-        </section>
+        </div>
     </div>
 </template>
-       
+
+<script>
+import { mapGetters } from "vuex";
+export default {
+    computed:{
+        ...mapGetters(['allProducts']),
+    },
+    created(){
+        this.$store.dispatch("fetchProducts")
+    }
+
+}
+</script>
+
+<style>
+.food-slider--container{
+   
+}
+ 
+.kare{
+    border-radius: 5px 20px 5px;
+}
+
+</style>

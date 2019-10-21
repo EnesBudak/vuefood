@@ -1,7 +1,7 @@
 <template>
     <div>
           <!-- Page Title -->
-        <div class="page-title bg-dark dark">
+        <!-- <div class="page-title bg-dark dark">
              <div class="bg-image bg-parallax skrollable skrollable-between" data-top-bottom="background-position-y: 30%" data-bottom-top="background-position-y: 70%" style="background-image: url(&quot;assets/img/photos/bg-croissant.jpg&quot;); background-position-y: 54.0884%;"><img src="assets/img/photos/bg-croissant.jpg" alt="" style="display: none;"></div>
             <div class="container">
                 
@@ -14,11 +14,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-       
-     <Category />
-    
+        </div> -->
+        <Category />
     </div>
 </template>
 <script>

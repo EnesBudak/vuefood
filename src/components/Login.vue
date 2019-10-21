@@ -52,6 +52,7 @@
 <script>
 import axios from 'axios'
 import { setInterval } from 'timers';
+import swal from 'sweetalert'
 
 
 
@@ -84,21 +85,22 @@ export default {
       else if(this.validEmail(this.userData.username)){
         const url ="user/login"
        
+       
        axios.post(url,this.userData)
       .then(response => {
-        
+        if(response.data.status === 'false'){
+          
+                     swal({
+                                   title: "Kullanıcı Adı Veya Şifreniz Yanlış!",
+                                          
+                                          icon:'warning',
+                                          button:'Devam Et!',
+                                          timer:1500
+                              })
 
-        console.log(response.data);
-        if(response.status != false){
-          //this.$router.go(this.$router.currentRoute)
-
-         window.location.href = "home";
-      
-        // setInterval(() =>{
-       
-       //  window.location.href = "home";
-       //  },500)
-        
+        }
+        if(response.data.status !== 'false'){
+          window.location.href = "home";
         }
       }) 
       .catch(e => console.log(e));
@@ -113,7 +115,7 @@ export default {
 
        validEmail:function(email) {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+      return re.test(email);
     }
  
     },

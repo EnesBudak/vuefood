@@ -8,7 +8,7 @@ import Login from './Views/Login.vue'
 import Profile from './Views/Profile.vue'
 import Complete from './Views/Complete.vue'
 import ÜyeOl from './Views/ÜyeOl.vue'
-
+import Hizmetler from './Views/Hizmetler.vue'
 
 export const routes =[
     {path:'',
@@ -18,7 +18,10 @@ export const routes =[
     {path:'/product',
     name:'product',
     component:Product
-    
+    },
+    {path:'/hizmetler',
+    name:'hizmetler',
+    component:Hizmetler
     },
     {path:'/about',
     name:'about',

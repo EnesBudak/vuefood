@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-lg-8 push-lg-4">
                         <h1 class="mb-0">Ödeme Yap</h1>
-                        <h4 class="text-muted mb-0">Kebapçı Zeki Usta</h4>
+                        <!-- <h4 class="text-muted mb-0">Kebapçı Zeki Usta</h4> -->
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                             <span class="name"><a href="#productModal" data-toggle="modal">{{cartItem.name}}</a></span>
                             <span class="caption text-muted"></span>
                         </td>
-                        <td class="price">{{cartItem.price}} ₺</td>
+                        <td class="price">{{cartItem.price}}₺</td>
                         <td class="actions">
                        <!--     <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
                             -->
@@ -39,7 +39,11 @@
                    
                  
                 </table>
-                                  <div class="cart-summary"  >
+               
+                           <div>
+                                      <div class="cart-summary" v-if="userInfos.cardTotal !== undefined " >
+                                          
+                                      
                     <div class="row"  >
                         <div class="col-7 text-right text-muted">Ara Toplam:</div>
                         <div class="col-5"><strong>{{parseFloat(userInfos.cardTotal / 1.18).toFixed(2)}} ₺</strong></div>
@@ -55,6 +59,23 @@
                             {{userInfos.cardTotal}}₺</strong></div>
                     </div>
                 </div> 
+                      <div class="cart-summary" v-else >
+                    <div class="row"  >
+                        <div class="col-7 text-right text-muted">Ara Toplam:</div>
+                        <div class="col-5"><strong>0 ₺</strong></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 text-right text-muted">KDV:</div>
+                        <div class="col-5"><strong>0 ₺</strong></div>
+                    </div>
+                    <hr class="hr-sm">
+                    <div class="row text-lg">
+                        <div class="col-7 text-right text-muted">Toplam:</div>
+                        <div class="col-5"><strong>
+                           0₺</strong></div>
+                    </div>
+                </div> 
+                           </div>
             
                         </div>
                     </div>
@@ -71,37 +92,89 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel">Adres Değiştir</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                        <button type="button" class="close " data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
                     </div>
                     <div class="modal-body ">
                       
-                        <h4 class="border-bottom pb-4"><i class="ti ti-location-pin mr-3 text-dark"></i><span class="text-primary">Bey mahallesi 16030 sokak no 15 kat 2{{userInfos.adress}} <button type="button" class="btn btn-sm mt-4 btn-outline-success text-success"> Ekle</button></span> </h4>
-                        <div v-if="newAdressAvaible">
-                            <input class="form-control" type="text">
+                        <h4 class="border-bottom pb-4"><i class="ti ti-location-pin mr-3 text-dark"></i><span class="text-primary">{{userInfos.adress}} </span> </h4>
+                      
+                        <div >
+                        <h4 class="modal-title text-danger pb-4" id="myModalLabel">Açık Adres Giriniz</h4>
+                      
+                            <input class="form-control" placeholder="Adres Giriniz" type="text"   v-model="secondAdress">
+                            
                         </div>
                     </div>
                      
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Kapat</button>
-                        <button type="button" class="btn btn-outline-info">Kaydet</button>
+                        <button type="button" @click="sendNewAdress" class="btn btn-outline-info">Kaydet</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
-                        <div class="example-box">
+        
+                           
+                      <div>
+                            <div class="col-md-12" v-show="userInfos.cardTotal !== undefined" >
                             <div class="bg-dark dark example-box-title" style="color:white">Adres Bilgileri
-                                <a href="#" data-target="#demoModal" data-toggle="modal"  style="float:right"   class="action-icon "><i class="ti ti-pencil"></i></a>
+                                <a href="#" data-target="#demoModal" data-toggle="modal"  style="float:right"   class="action-icon text-primary"><i class="text-lg ti ti-pencil"></i></a>
                            
                             </div>
                             <div class="example-box-content">
-                                 <h4 class="border-bottom pb-4"> <i class="ti ti-user mr-3 text-dark"> </i> <span class=" text-primary">Enes Budak{{userInfos.firstname}} {{userInfos.lastname}}</span> </h4>
-                                  <h4 class="border-bottom pb-4"><i class="ti ti-mobile mr-3 text-dark"></i><span class=" text-primary">(543) 529 21 17{{userInfos.phone}}</span></h4>
-                                   <h4 class="border-bottom pb-4"><i class="ti ti-location-pin mr-3 text-dark"></i><span class=" text-primary">Bey mahallesi 16030 sokak no 15 kat 2{{userInfos.adress}}</span><h2></h2></h4>
-                               
+                                 <h4 class="border-bottom pb-4"> <i class="ti ti-user mr-3 text-dark"> </i> <span class=" text-dark">{{userInfos.firstname}} {{userInfos.lastname}}</span> </h4>
+                                  <h4 class="border-bottom pb-4"><i class="ti ti-mobile mr-3 text-dark"></i><span class=" text-dark">{{userInfos.phone}}</span></h4>
+                                  <h4 class=" pb-4"><i class="ti ti-location-arrow mr-3 text-dark"></i><span class=" text-dark">Teslimat Adresini Seçiniz</span></h4>
+                              
+                               <div class="form-group">
+                                  <!-- <label class="custom-control custom-radio">
+                                        <input type="radio" id="four" name="adress_type" class="custom-control-input" v-model="order.adress" value="adress" >
+                                        <span class="custom-control-indicator"></span>
+                                         <span class="custom-control-description">{{userInfos.adress}}</span>
+                                  <h4 class=" pb-4"><i class="ti ti-location-pin mr-3 text-dark"></i><span class="text-dark">{{userInfos.adress}}</span><h2></h2></h4>
+                                      
+                                    </label>  -->
+                                   <div class="col-md-12  form-group text-lg">
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" id="adressOne" name="adress_type" class="custom-control-input" v-model="order.adress" value="adress" >
+                                        <span class="custom-control-indicator"></span>
+                                         <h4 class=" pb-4"><i class="ti ti-location-pin mr-3 text-dark"></i><span class="text-dark">{{userInfos.adress}}</span><h2></h2></h4> 
+                                       
+                                    </label>
+                                </div>
+                                <div class="col-md-12 form-group text-lg" v-show="userInfos.adress_2 != null">
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" id="adressTwo" name="adress_type" class="custom-control-input" v-model="order.adress" value="adress_2" >
+                                        <span class="custom-control-indicator"></span>
+                                         <h4 class=" pb-4"><i class="ti ti-location-pin mr-3 text-dark"></i><span class="text-dark">{{userInfos.adress_2}}</span><h2></h2></h4> 
+                                        
+                                    </label>
+                                </div>
+                                
+                                   
+                                   <!-- <div  v-if="userInfos.adress_2 != null " >
+                                       
+                                        <label  class="custom-control custom-radio">
+                                        <input type="radio" id="five" name="adress_type"  class="custom-control-input" v-model="order.adress" value="adress_2" >
+                                        <span class="custom-control-indicator">{{userInfos.adress_2}}</span>
+                                         <h4 class=" pb-4"><i class="ti ti-location-pin mr-3 text-dark"></i><span class="text-dark">{{userInfos.adress_2}}</span><h2></h2></h4> 
+                                      
+                                    </label>
+                                   </div> -->
+                                  
+                                </div>
                             </div>
                         </div>
+                           <div class="col-md-12"  v-show="userInfos.cardTotal == undefined">
+                            
+                            <div class="example-box-content">
+                                 <h4 class=" pb-4">  <span class=" text-dark">Lütfen Giriş Yapınız!</span> </h4>
+                                  
+                              
+                            
+                            </div>
+                        </div>
+                      </div>
 
                                
                             </div>
@@ -122,7 +195,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label>Not Ekle :</label>
+                                    <label>Açık Adres Tarifi / Müşteri Yemek Notu :</label>
                                    <textarea class="form-control" name="" id="" cols="30" rows="5" v-model="order.content"></textarea>
                                 </div>
                             </div>
@@ -176,19 +249,44 @@ import swal from 'sweetalert';
 export default {
     data(){
         return{
+            secondAdress:'',
             newAdressAvaible : true,
             order:{
             picked:'',
             selected:'',
-            adressChanged:false,
-            content:''
+            
+            content:'',
+            adress:''
             }
         }
     },
     
     computed:mapGetters(['allCartItems','userInfos']),
     methods:{
+        test(){
+             
+        },
         ...mapActions(['fetchCartItems']),
+
+        sendNewAdress(){
+            const url = 'user/newAdress';
+            if(this.secondAdress != ''){
+                axios.post(url,{adress:this.secondAdress})
+                // this.$store.dispatch('sendSecondAdress',this.secondAdress)
+                .then(() =>{
+                    swal({
+                         title: "Teslimat Adresiniz Kayıt Edildi!",
+                                
+                                icon:'success',
+                                button:'Devam Et!',
+                                timer:1500
+                    })
+                    .then(() => {
+                        location.reload();
+                    } )
+                })
+            }
+        },
 
     async sendOrderDetail(){
         
@@ -212,7 +310,14 @@ export default {
                         })
                          
                 }else{
-                    console.log('hata!')
+                     swal({
+                                title: "Siparişiniz Verilirken Bir Hatayla Karşılaşıldı!",
+                                text: "",
+                                icon:'warning',
+                                button:'Devam Et!',
+                                timer:1500
+                            
+                        })
                 } 
                 
             } catch (error) {
@@ -231,6 +336,8 @@ export default {
     created(){
 
      this.fetchCartItems();
+     
+     
 
     }
 }
